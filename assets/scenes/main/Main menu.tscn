@@ -1,0 +1,307 @@
+[gd_scene load_steps=18 format=3 uid="uid://di8d3sxgjyjxv"]
+
+[ext_resource type="Texture2D" uid="uid://db8o7ihxo4adt" path="res://assets/images/main_menu/background-main-menu.png" id="1_vu5e7"]
+[ext_resource type="Texture2D" uid="uid://pdf3xe78c6v5" path="res://assets/images/main_menu/Open.png" id="2_anfkj"]
+[ext_resource type="FontFile" uid="uid://e37tolg3c5fc" path="res://assets/fonts/Determination Sans.otf" id="2_jujfb"]
+[ext_resource type="FontFile" uid="uid://bdh12rg6fde33" path="res://assets/fonts/League Spartan.ttf" id="3_jm34t"]
+[ext_resource type="Theme" uid="uid://ckp1psjwtidnx" path="res://assets/sprites/ui/Default.tres" id="5_rbgkh"]
+[ext_resource type="Texture2D" uid="uid://1ucwunnymxl3" path="res://assets/sprites/icons/icon_arcade.png" id="6_72skp"]
+[ext_resource type="Texture2D" uid="uid://dq0yljcnuulhy" path="res://assets/sprites/icons/icon_shop.png" id="7_2kpvo"]
+[ext_resource type="Texture2D" uid="uid://l8rw33mabvx6" path="res://assets/sprites/icons/icon_pvp.png" id="8_dsoff"]
+[ext_resource type="Texture2D" uid="uid://cmbmet32ogtsk" path="res://assets/sprites/icons/icon_challenge.png" id="9_280sm"]
+[ext_resource type="Texture2D" uid="uid://dcog6wleqs064" path="res://assets/sprites/icons/icon_ranking.png" id="10_krmw7"]
+[ext_resource type="Texture2D" uid="uid://xlsi4yvfg5ah" path="res://assets/sprites/icons/icon_inventory.png" id="11_nrhio"]
+[ext_resource type="Texture2D" uid="uid://du3ouync8205e" path="res://assets/sprites/icons/icon_coin.png" id="12_2k4qm"]
+[ext_resource type="Texture2D" uid="uid://bpaaqm77ls474" path="res://assets/sprites/icons/icon_bubble.png" id="13_u6d8u"]
+[ext_resource type="Texture2D" uid="uid://byxcok30jhok6" path="res://assets/sprites/icons/icon_book.png" id="14_82x06"]
+[ext_resource type="Texture2D" uid="uid://cxtx0q2t5rdsk" path="res://assets/sprites/icons/icon_setting.png" id="15_y3iyc"]
+
+[sub_resource type="FontVariation" id="FontVariation_xih6x"]
+base_font = ExtResource("3_jm34t")
+variation_opentype = {
+2003265652: 400
+}
+
+[sub_resource type="FontVariation" id="FontVariation_swauk"]
+base_font = ExtResource("3_jm34t")
+variation_opentype = {
+2003265652: 600
+}
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(577.13, 308)
+scale = Vector2(1.12084, 1.04412)
+texture = ExtResource("1_vu5e7")
+
+[node name="Overlay" type="ColorRect" parent="Background"]
+offset_left = -515.0
+offset_top = -295.0
+offset_right = 512.0
+offset_bottom = 355.0
+color = Color(0.0784314, 0.0784314, 0.0784314, 0.811765)
+
+[node name="Character" type="Sprite2D" parent="Background"]
+position = Vector2(-298.999, 78.535)
+scale = Vector2(0.837765, 0.899322)
+texture = ExtResource("2_anfkj")
+
+[node name="User Zone" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 32.0
+offset_top = 22.0
+offset_right = 384.0
+offset_bottom = 104.0
+
+[node name="AvatarOut" type="ColorRect" parent="User Zone"]
+layout_mode = 2
+offset_left = 5.0
+offset_top = 4.0
+offset_right = 76.0
+offset_bottom = 75.0
+
+[node name="AvatarIn" type="ColorRect" parent="User Zone"]
+layout_mode = 2
+offset_left = 11.0
+offset_top = 10.0
+offset_right = 70.0
+offset_bottom = 69.0
+color = Color(0.118581, 0.118581, 0.118581, 1)
+
+[node name="User Name" type="Label" parent="User Zone"]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 12.0
+offset_right = 240.0
+offset_bottom = 43.0
+theme_override_fonts/font = ExtResource("2_jujfb")
+theme_override_font_sizes/font_size = 25
+text = "Default User"
+
+[node name="User ID" type="Label" parent="User Zone"]
+layout_mode = 0
+offset_left = 88.0
+offset_top = 46.0
+offset_right = 238.0
+offset_bottom = 81.0
+theme_override_fonts/font = SubResource("FontVariation_xih6x")
+theme_override_font_sizes/font_size = 22
+text = "#000000"
+
+[node name="Mode Button" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 423.0
+offset_top = 231.0
+offset_right = 1032.0
+offset_bottom = 435.0
+
+[node name="Challenge" type="Button" parent="Mode Button"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 118.0
+offset_right = 297.0
+offset_bottom = 196.251
+theme = ExtResource("5_rbgkh")
+theme_override_font_sizes/font_size = 22
+text = "Chế độ Thử thách"
+icon = ExtResource("9_280sm")
+expand_icon = true
+
+[node name="Online" type="Button" parent="Mode Button"]
+layout_mode = 0
+offset_left = 306.0
+offset_top = 118.0
+offset_right = 596.0
+offset_bottom = 196.251
+theme = ExtResource("5_rbgkh")
+theme_override_font_sizes/font_size = 22
+text = "Đối kháng Online
+(unavailable)"
+icon = ExtResource("8_dsoff")
+expand_icon = true
+
+[node name="Arcade" type="Button" parent="Mode Button"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 10.0
+offset_right = 597.0
+offset_bottom = 104.0
+theme = ExtResource("5_rbgkh")
+theme_override_font_sizes/font_size = 22
+text = "Chế độ giải đố"
+icon = ExtResource("6_72skp")
+expand_icon = true
+
+[node name="Ultities Button" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 532.0
+offset_top = 517.0
+offset_right = 1132.0
+offset_bottom = 630.0
+
+[node name="Shop" type="Control" parent="Ultities Button"]
+anchors_preset = 0
+offset_left = 291.0
+offset_top = 5.0
+offset_right = 369.0
+offset_bottom = 105.0
+
+[node name="Button" type="Button" parent="Ultities Button/Shop"]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 77.0
+offset_bottom = 78.0
+theme = ExtResource("5_rbgkh")
+theme_override_fonts/font = ExtResource("2_jujfb")
+theme_override_font_sizes/font_size = 22
+icon = ExtResource("7_2kpvo")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Label" type="Label" parent="Ultities Button/Shop"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 81.0
+offset_right = 73.0
+offset_bottom = 104.0
+theme = ExtResource("5_rbgkh")
+theme_override_fonts/font = SubResource("FontVariation_swauk")
+text = "Cửa hàng"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Leatherboard" type="Control" parent="Ultities Button"]
+anchors_preset = 0
+offset_left = 396.0
+offset_top = 5.0
+offset_right = 474.0
+offset_bottom = 105.0
+
+[node name="Button" type="Button" parent="Ultities Button/Leatherboard"]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 77.0
+offset_bottom = 78.0
+theme = ExtResource("5_rbgkh")
+theme_override_fonts/font = ExtResource("2_jujfb")
+theme_override_font_sizes/font_size = 22
+icon = ExtResource("10_krmw7")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Label" type="Label" parent="Ultities Button/Leatherboard"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 81.0
+offset_right = 75.0
+offset_bottom = 104.0
+theme = ExtResource("5_rbgkh")
+theme_override_fonts/font = SubResource("FontVariation_swauk")
+text = "Xếp hạng"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="Inventory" type="Control" parent="Ultities Button"]
+anchors_preset = 0
+offset_left = 500.0
+offset_top = 5.0
+offset_right = 578.0
+offset_bottom = 105.0
+
+[node name="Button" type="Button" parent="Ultities Button/Inventory"]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 77.0
+offset_bottom = 78.0
+theme = ExtResource("5_rbgkh")
+theme_override_fonts/font = ExtResource("2_jujfb")
+theme_override_font_sizes/font_size = 22
+icon = ExtResource("11_nrhio")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Label" type="Label" parent="Ultities Button/Inventory"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 81.0
+offset_right = 75.0
+offset_bottom = 104.0
+theme = ExtResource("5_rbgkh")
+theme_override_fonts/font = SubResource("FontVariation_swauk")
+text = "Vật phẩm"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="Coin" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 668.0
+offset_top = 37.0
+offset_right = 880.0
+offset_bottom = 89.0
+
+[node name="Icon" type="Sprite2D" parent="Coin"]
+position = Vector2(36, 25)
+scale = Vector2(3.1875, 3.1875)
+texture = ExtResource("12_2k4qm")
+
+[node name="Label" type="Label" parent="Coin"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 6.0
+offset_right = 142.0
+offset_bottom = 43.0
+theme = ExtResource("5_rbgkh")
+theme_override_font_sizes/font_size = 30
+text = "99.9k"
+
+[node name="Notification" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 862.0
+offset_top = 40.0
+offset_right = 927.0
+offset_bottom = 95.0
+
+[node name="Icon" type="Sprite2D" parent="Notification"]
+position = Vector2(27, 23)
+scale = Vector2(2.90521, 2.70635)
+texture = ExtResource("13_u6d8u")
+
+[node name="Label" type="Label" parent="Notification"]
+offset_left = 40.0
+offset_top = 28.0
+offset_right = 55.0
+offset_bottom = 49.0
+theme = ExtResource("5_rbgkh")
+theme_override_font_sizes/font_size = 17
+text = "3"
+
+[node name="Guide Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 977.0
+offset_top = 33.0
+offset_right = 1036.0
+offset_bottom = 92.0
+theme = ExtResource("5_rbgkh")
+icon = ExtResource("14_82x06")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Settings Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1054.0
+offset_top = 33.0
+offset_right = 1113.0
+offset_bottom = 92.0
+theme = ExtResource("5_rbgkh")
+icon = ExtResource("15_y3iyc")
+icon_alignment = 1
+expand_icon = true
