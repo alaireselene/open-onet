@@ -6,4 +6,4 @@ func _on_back_pressed():
 
 
 func _on_lv_1_pressed():
-	SceneLoader.load_scene("res://scences/level.tscn")
+	SceneLoader.load_scene("res://scences/level/level.tscn")
