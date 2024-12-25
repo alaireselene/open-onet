@@ -1,4 +1,15 @@
-[gd_scene format=3 uid="uid://csly72qvcmkxx"]
+[gd_scene load_steps=6 format=3 uid="uid://csly72qvcmkxx"]
+
+[ext_resource type="Texture2D" uid="uid://b6ii3elgebib0" path="res://assets/sprites/ui/UI_Frame_Yellow.png" id="1_feedr"]
+[ext_resource type="Theme" uid="uid://ckp1psjwtidnx" path="res://assets/sprites/ui/Default.tres" id="1_spimx"]
+[ext_resource type="FontFile" uid="uid://bdh12rg6fde33" path="res://assets/fonts/League Spartan.ttf" id="3_elsj1"]
+[ext_resource type="Texture2D" uid="uid://bcnbo6vq357oj" path="res://assets/sprites/ui/UI_Flat_ButtonCheck.png" id="4_o2d5i"]
+
+[sub_resource type="FontVariation" id="FontVariation_2nrmr"]
+base_font = ExtResource("3_elsj1")
+variation_opentype = {
+2003265652: 400
+}
 
 [node name="Settings" type="Control"]
 layout_mode = 3
@@ -8,8 +19,140 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Overlay" type="ColorRect" parent="."]
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(12, 10.125)
+texture = ExtResource("1_feedr")
+
+[node name="Setting Panel" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 48.0
+offset_top = 64.0
+offset_right = 1236.0
+offset_bottom = 635.0
+scale = Vector2(0.88196, 0.88196)
+
+[node name="Container" type="TabContainer" parent="Setting Panel"]
 layout_mode = 0
-offset_right = 1152.0
-offset_bottom = 648.0
-color = Color(0.0196078, 0.0196078, 0.0196078, 0.447059)
+offset_left = 3.40152
+offset_top = 27.0
+offset_right = 1191.4
+offset_bottom = 544.0
+theme = ExtResource("1_spimx")
+theme_override_font_sizes/font_size = 29
+tab_alignment = 2
+current_tab = 1
+tab_focus_mode = 1
+
+[node name="Chung" type="Control" parent="Setting Panel/Container"]
+visible = false
+layout_mode = 2
+theme = ExtResource("1_spimx")
+theme_type_variation = &"HeaderLarge"
+metadata/_tab_index = 0
+
+[node name="Âm thanh" type="Control" parent="Setting Panel/Container"]
+layout_mode = 2
+theme = ExtResource("1_spimx")
+theme_type_variation = &"HeaderLarge"
+metadata/_tab_index = 1
+
+[node name="BGM" type="Control" parent="Setting Panel/Container/Âm thanh"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 54.0
+offset_top = 65.0
+offset_right = 1133.0
+offset_bottom = 119.0
+
+[node name="Text" type="Label" parent="Setting Panel/Container/Âm thanh/BGM"]
+layout_mode = 0
+offset_left = 0.424229
+offset_top = 0.0605774
+offset_right = 316.424
+offset_bottom = 47.0606
+theme = ExtResource("1_spimx")
+theme_override_font_sizes/font_size = 38
+text = "Âm lượng nhạc nền"
+
+[node name="Volume Slider" type="HSlider" parent="Setting Panel/Container/Âm thanh/BGM"]
+layout_mode = 0
+offset_left = 408.0
+offset_right = 1070.0
+offset_bottom = 42.0
+
+[node name="BGM2" type="Control" parent="Setting Panel/Container/Âm thanh"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 54.0
+offset_top = 137.626
+offset_right = 1133.0
+offset_bottom = 191.626
+
+[node name="Text" type="Label" parent="Setting Panel/Container/Âm thanh/BGM2"]
+layout_mode = 0
+offset_top = -2.26767
+offset_right = 314.0
+offset_bottom = 44.7323
+theme = ExtResource("1_spimx")
+theme_override_font_sizes/font_size = 38
+text = "Âm lượng hiệu ứng"
+
+[node name="Volume Slider" type="HSlider" parent="Setting Panel/Container/Âm thanh/BGM2"]
+layout_mode = 0
+offset_left = 408.0
+offset_right = 1070.0
+offset_bottom = 42.0
+
+[node name="Đồ họa" type="Control" parent="Setting Panel/Container"]
+visible = false
+layout_mode = 2
+theme = ExtResource("1_spimx")
+theme_type_variation = &"HeaderLarge"
+metadata/_tab_index = 2
+
+[node name="Khác" type="Control" parent="Setting Panel/Container"]
+visible = false
+layout_mode = 2
+theme = ExtResource("1_spimx")
+theme_type_variation = &"HeaderLarge"
+metadata/_tab_index = 3
+
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 48.0
+offset_top = 43.0
+offset_right = 203.0
+offset_bottom = 123.0
+
+[node name="Title" type="Label" parent="Control"]
+layout_mode = 0
+offset_right = 155.0
+offset_bottom = 56.0
+theme = ExtResource("1_spimx")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 45
+text = "CÀI ĐẶT"
+
+[node name="Subtitle" type="Label" parent="Control"]
+layout_mode = 0
+offset_top = 53.0
+offset_right = 96.0
+offset_bottom = 80.0
+theme = ExtResource("1_spimx")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("FontVariation_2nrmr")
+theme_override_font_sizes/font_size = 28
+text = "Settings"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 896.0
+offset_top = 553.0
+offset_right = 1096.0
+offset_bottom = 609.0
+theme = ExtResource("1_spimx")
+theme_override_font_sizes/font_size = 25
+text = "Quay lại"
+icon = ExtResource("4_o2d5i")
+expand_icon = true
