@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://biayybrg431d8" path="res://assets/images/levels_bg/battle-2.png" id="1_3id55"]
 [ext_resource type="Theme" uid="uid://ckp1psjwtidnx" path="res://assets/sprites/ui/Default.tres" id="2_3pr77"]
-[ext_resource type="Script" path="res://scenes/game_mode/arcade/levels/grid_gen.gd" id="2_d0gln"]
+[ext_resource type="Script" path="res://scenes/game_mode/arcade/level/grid_gen.gd" id="2_d0gln"]
 [ext_resource type="FontFile" uid="uid://bdh12rg6fde33" path="res://assets/fonts/League Spartan.ttf" id="3_nmfup"]
 [ext_resource type="Texture2D" uid="uid://ca18m3crgnnx" path="res://assets/sprites/icons/icon_heart.png" id="4_klnxb"]
 [ext_resource type="Texture2D" uid="uid://ctb2mii83tbt3" path="res://assets/sprites/icons/skill_suggest.png" id="4_ys45g"]
@@ -165,20 +165,20 @@ texture = ExtResource("5_cfqp3")
 [node name="Gadgets" type="Control" parent="Background/Left panel/Ultities"]
 anchors_preset = 0
 offset_left = 36.0
-offset_top = 114.0
+offset_top = 134.0
 offset_right = 204.0
-offset_bottom = 362.0
+offset_bottom = 382.0
 
 [node name="Label" type="Label" parent="Background/Left panel/Ultities/Gadgets"]
 layout_mode = 0
 offset_left = 3.0
 offset_top = 8.0
-offset_right = 142.0
+offset_right = 164.0
 offset_bottom = 33.0
 theme_override_colors/font_color = Color(0.0807831, 0.0807834, 0.0807833, 1)
 theme_override_fonts/font = SubResource("FontVariation_mnllv")
 theme_override_font_sizes/font_size = 17
-text = "Có thể sử dụng"
+text = "Phụ trợ"
 vertical_alignment = 1
 
 [node name="Skills" type="Control" parent="Background/Left panel/Ultities/Gadgets"]

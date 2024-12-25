@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://b3xr4glw5v2ow"]
+[gd_scene format=3 uid="uid://csly72qvcmkxx"]
 
-[node name="Tite" type="Control"]
+[node name="Settings" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
