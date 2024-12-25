@@ -1,0 +1,118 @@
+[gd_scene load_steps=9 format=3 uid="uid://c4gmrnvwadycj"]
+
+[ext_resource type="Theme" uid="uid://ckp1psjwtidnx" path="res://assets/sprites/ui/Default.tres" id="1_qvadt"]
+[ext_resource type="Texture2D" uid="uid://cif431iqi3ftk" path="res://assets/sprites/ui/UI_Flat_Banner.png" id="2_dn40v"]
+[ext_resource type="FontFile" uid="uid://bdh12rg6fde33" path="res://assets/fonts/League Spartan.ttf" id="3_f5ab2"]
+[ext_resource type="Texture2D" uid="uid://c2rmerountkp1" path="res://assets/sprites/icons/icon_continue.png" id="4_457ci"]
+[ext_resource type="Texture2D" uid="uid://b6b2p0b82anv3" path="res://assets/sprites/ui/UI2_Sheet.png" id="5_jncnx"]
+[ext_resource type="Texture2D" uid="uid://dhtprt2pcl6wt" path="res://assets/sprites/icons/icon_restart.png" id="6_lasbh"]
+
+[sub_resource type="FontVariation" id="FontVariation_kh3kf"]
+base_font = ExtResource("3_f5ab2")
+variation_opentype = {
+2003265652: 400
+}
+
+[sub_resource type="ImageTexture" id="ImageTexture_sxgxe"]
+
+[node name="Pause" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Overlay" type="ColorRect" parent="."]
+modulate = Color(0, 0, 0, 0.8)
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.0338533, 0.0338533, 0.0338533, 1)
+
+[node name="Popup" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 360.0
+offset_top = 96.0
+offset_right = 400.0
+offset_bottom = 136.0
+
+[node name="Background" type="Panel" parent="Popup"]
+modulate = Color(1, 1, 1, 0.470588)
+layout_mode = 0
+offset_right = 440.0
+offset_bottom = 296.0
+theme = ExtResource("1_qvadt")
+
+[node name="Ribbon" type="Sprite2D" parent="Popup"]
+position = Vector2(220, 32)
+scale = Vector2(7, 4.84062)
+texture = ExtResource("2_dn40v")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 472.0
+offset_top = 104.0
+offset_right = 688.0
+offset_bottom = 160.0
+theme = ExtResource("1_qvadt")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "TẠM DỪNG"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="."]
+layout_mode = 0
+offset_left = 472.0
+offset_top = 153.0
+offset_right = 688.0
+offset_bottom = 172.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("FontVariation_kh3kf")
+theme_override_font_sizes/font_size = 14
+text = "PAUSE GAME"
+horizontal_alignment = 1
+
+[node name="Continue" type="Button" parent="."]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 208.0
+offset_right = 568.0
+offset_bottom = 272.251
+theme = ExtResource("1_qvadt")
+text = "TIẾP TỤC
+Continue"
+icon = ExtResource("4_457ci")
+alignment = 0
+expand_icon = true
+
+[node name="Restart" type="Button" parent="."]
+layout_mode = 0
+offset_left = 592.0
+offset_top = 208.0
+offset_right = 752.0
+offset_bottom = 272.251
+theme = ExtResource("1_qvadt")
+text = "CHƠI LẠI
+Restart"
+icon = ExtResource("6_lasbh")
+alignment = 0
+expand_icon = true
+
+[node name="Home" type="Button" parent="."]
+layout_mode = 0
+offset_left = 552.0
+offset_top = 312.0
+offset_right = 600.0
+offset_bottom = 360.0
+theme = ExtResource("1_qvadt")
+icon = SubResource("ImageTexture_sxgxe")
+alignment = 0
+expand_icon = true
+
+[node name="Icon" type="Sprite2D" parent="Home"]
+position = Vector2(24.0001, 22)
+scale = Vector2(2.82466, 3.00001)
+texture = ExtResource("5_jncnx")
+region_enabled = true
+region_rect = Rect2(51.0693, 82.073, 10.029, 9.57053)
