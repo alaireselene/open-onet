@@ -1,5 +1,6 @@
-[gd_scene load_steps=18 format=3 uid="uid://di8d3sxgjyjxv"]
+[gd_scene load_steps=19 format=3 uid="uid://di8d3sxgjyjxv"]
 
+[ext_resource type="Script" path="res://scenes/main_menu/main_menu.gd" id="1_1vx2a"]
 [ext_resource type="Texture2D" uid="uid://db8o7ihxo4adt" path="res://assets/images/main_menu/background-main-menu.png" id="1_vu5e7"]
 [ext_resource type="Texture2D" uid="uid://pdf3xe78c6v5" path="res://assets/images/main_menu/Open.png" id="2_anfkj"]
 [ext_resource type="FontFile" uid="uid://e37tolg3c5fc" path="res://assets/fonts/Determination Sans.otf" id="2_jujfb"]
@@ -35,6 +36,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_1vx2a")
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(577.13, 308)
@@ -153,7 +155,7 @@ offset_top = 5.0
 offset_right = 369.0
 offset_bottom = 105.0
 
-[node name="Button" type="Button" parent="Ultities Button/Shop"]
+[node name="shop" type="Button" parent="Ultities Button/Shop"]
 layout_mode = 0
 offset_top = 1.0
 offset_right = 77.0
@@ -184,7 +186,7 @@ offset_top = 5.0
 offset_right = 474.0
 offset_bottom = 105.0
 
-[node name="Button" type="Button" parent="Ultities Button/Leatherboard"]
+[node name="achievement" type="Button" parent="Ultities Button/Leatherboard"]
 layout_mode = 0
 offset_top = 1.0
 offset_right = 77.0
@@ -306,3 +308,9 @@ theme = ExtResource("5_rbgkh")
 icon = ExtResource("15_y3iyc")
 icon_alignment = 1
 expand_icon = true
+
+[connection signal="pressed" from="Mode Button/Arcade" to="." method="_on_arcade_pressed"]
+[connection signal="pressed" from="Ultities Button/Shop/shop" to="." method="_on_shop_pressed"]
+[connection signal="pressed" from="Ultities Button/Leatherboard/achievement" to="." method="_on_achievement_pressed"]
+[connection signal="pressed" from="Guide Button" to="." method="_on_guide_button_pressed"]
+[connection signal="pressed" from="Settings Button" to="." method="_on_settings_button_pressed"]

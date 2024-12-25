@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://bd2bqbpdlyhtj"]
 
+[ext_resource type="Script" path="res://scenes/game_mode/arcade/arcade_mode.gd" id="1_b0ckq"]
 [ext_resource type="Texture2D" uid="uid://dis5kkgx6usfa" path="res://assets/images/levels_bg/default.png" id="1_fhuox"]
 [ext_resource type="Theme" uid="uid://ckp1psjwtidnx" path="res://assets/sprites/ui/Default.tres" id="2_ebs42"]
 [ext_resource type="Texture2D" uid="uid://b6ii3elgebib0" path="res://assets/sprites/ui/UI_Frame_Yellow.png" id="3_1at2f"]
-[ext_resource type="Texture2D" uid="uid://bnuv6jgtd5s68" path="res://assets/sprites/ui/UI_Flat_ButtonCross.png" id="4_5qqj8"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fd71p"]
 texture = ExtResource("3_1at2f")
@@ -15,6 +15,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_b0ckq")
 
 [node name="Default" type="Sprite2D" parent="."]
 position = Vector2(576.741, 380)
@@ -54,9 +55,8 @@ vertical_alignment = 1
 
 [node name="Level list" type="Control" parent="."]
 anchors_preset = 0
-offset_top = -25.0
 offset_right = 40.0
-offset_bottom = 15.0
+offset_bottom = 40.0
 
 [node name="Back panel" type="Panel" parent="Level list"]
 layout_mode = 0
@@ -254,14 +254,4 @@ theme = ExtResource("2_ebs42")
 theme_override_font_sizes/font_size = 36
 text = "18"
 
-[node name="Button" type="Button" parent="Level list"]
-layout_mode = 0
-offset_left = 830.0
-offset_top = 576.0
-offset_right = 1042.0
-offset_bottom = 638.0
-theme = ExtResource("2_ebs42")
-theme_override_font_sizes/font_size = 28
-text = "Quay lại"
-icon = ExtResource("4_5qqj8")
-expand_icon = true
+[connection signal="pressed" from="Level list/Level button/Level 1" to="." method="_on_level_1_pressed"]

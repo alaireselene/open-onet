@@ -44,20 +44,30 @@ grow_vertical = 2
 rotation = -1.5708
 texture = SubResource("GradientTexture2D_dk5lc")
 
-[node name="Label" type="Label" parent="."]
+[node name="Progress" type="Label" parent="."]
 layout_mode = 0
 offset_left = 803.0
-offset_top = 601.0
+offset_top = 580.0
 offset_right = 1134.0
-offset_bottom = 638.0
+offset_bottom = 617.0
 theme_override_colors/font_color = Color(0.89059, 0.89059, 0.89059, 1)
 theme_override_fonts/font = SubResource("FontVariation_d0aic")
 theme_override_font_sizes/font_size = 22
-text = "Đang tải tài nguyên (90%)"
+text = "Đang tải tài nguyên..."
 horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="Logo" type="Sprite2D" parent="."]
-position = Vector2(108, 604)
+position = Vector2(108, 587)
 scale = Vector2(0.34098, 0.34098)
 texture = ExtResource("3_btlx8")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -27.0
+grow_horizontal = 2
+grow_vertical = 0
