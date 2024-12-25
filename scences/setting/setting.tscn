@@ -1,0 +1,66 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5cjsayav8ir"]
+
+[ext_resource type="Script" path="res://scences/setting/setting.gd" id="1_qfofj"]
+[ext_resource type="AudioStream" uid="uid://e3s85qyhgg0b" path="res://data/audio/town-10169.mp3" id="2_otn02"]
+[ext_resource type="Texture2D" uid="uid://dqwv04k07xj8n" path="res://data/images/close.jpg" id="3_85nyq"]
+
+[node name="Setting" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qfofj")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_right = -652.0
+offset_bottom = 98.0
+grow_horizontal = 2
+scale = Vector2(2, 2)
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_right = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="VolumeLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Volume"
+
+[node name="Volume" type="HSlider" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+
+[node name="MuteLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Mute
+"
+
+[node name="Mute" type="CheckBox" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+
+[node name="Back" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -54.0
+offset_top = 9.0
+offset_right = 179.0
+offset_bottom = 242.0
+grow_horizontal = 0
+scale = Vector2(0.2, 0.2)
+mouse_default_cursor_shape = 2
+icon = ExtResource("3_85nyq")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_otn02")
+
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/Volume" to="." method="_on_volume_value_changed"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/Mute" to="." method="_on_mute_toggled"]
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
