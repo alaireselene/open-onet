@@ -1,0 +1,259 @@
+[gd_scene load_steps=7 format=3 uid="uid://ctheog5lsbowt"]
+
+[ext_resource type="Texture2D" uid="uid://mo0cg8tvc5ig" path="res://assets/sprites/ui/UI_Flat_Frame.png" id="1_qfe4y"]
+[ext_resource type="Texture2D" uid="uid://u1nvwgbkgkbo" path="res://assets/sprites/ui/UI_Flat_Banner02.png" id="2_7n7f3"]
+[ext_resource type="Texture2D" uid="uid://dcog6wleqs064" path="res://assets/sprites/icons/icon_ranking.png" id="3_yy4hd"]
+[ext_resource type="Theme" uid="uid://ckp1psjwtidnx" path="res://assets/sprites/ui/Default.tres" id="4_2xrbh"]
+[ext_resource type="Theme" uid="uid://h1f7iqhh7ycb" path="res://assets/sprites/ui/Yellow.tres" id="5_s502s"]
+[ext_resource type="Texture2D" uid="uid://bnuv6jgtd5s68" path="res://assets/sprites/ui/UI_Flat_ButtonCross.png" id="6_0hpey"]
+
+[node name="Achievement" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_right = 1156.0
+offset_bottom = 648.0
+texture = ExtResource("1_qfe4y")
+region_rect = Rect2(2.28687, 3.35786, 91.8915, 57.8818)
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 121.0
+offset_right = 1116.0
+offset_bottom = 611.0
+theme = ExtResource("5_s502s")
+
+[node name="UiFlatBanner02" type="Sprite2D" parent="."]
+position = Vector2(562, 98)
+scale = Vector2(9.27812, 5.9)
+texture = ExtResource("2_7n7f3")
+
+[node name="IconRanking" type="Sprite2D" parent="."]
+position = Vector2(560, 133)
+scale = Vector2(4, 4)
+texture = ExtResource("3_yy4hd")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 470.0
+offset_top = 54.0
+offset_right = 658.0
+offset_bottom = 101.0
+theme = ExtResource("4_2xrbh")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 38
+text = "Thành tích"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1060.0
+offset_top = 9.0
+offset_right = 1143.0
+offset_bottom = 92.0
+theme = ExtResource("5_s502s")
+icon = ExtResource("6_0hpey")
+expand_icon = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 86.0
+offset_top = 222.0
+offset_right = 1096.0
+offset_bottom = 464.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Ranking" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_2xrbh")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "         "
+
+[node name="Tên" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_2xrbh")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Người chơi                           "
+
+[node name="Tổng điểm" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_2xrbh")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Tổng điểm số                              "
+
+[node name="Số giờ chơi" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_2xrbh")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Số giờ chơi  "
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Ranking" type="Label" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("4_2xrbh")
+theme_override_colors/font_color = Color(0.0509804, 0.352941, 0.427451, 1)
+theme_override_font_sizes/font_size = 30
+text = "#40  "
+
+[node name="Tên" type="Label" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("4_2xrbh")
+theme_override_colors/font_color = Color(0.0509804, 0.352941, 0.427451, 1)
+theme_override_font_sizes/font_size = 30
+text = "Tôi                                           "
+
+[node name="Tổng điểm" type="Label" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("4_2xrbh")
+theme_override_colors/font_color = Color(0.0509804, 0.352941, 0.427451, 1)
+theme_override_font_sizes/font_size = 30
+text = "1.000.000.000                             "
+
+[node name="Số giờ chơi" type="Label" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("4_2xrbh")
+theme_override_colors/font_color = Color(0.0509804, 0.352941, 0.427451, 1)
+theme_override_font_sizes/font_size = 30
+text = "20"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Ranking" type="Label" parent="VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme = ExtResource("4_2xrbh")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "#1    "
+
+[node name="Tên" type="Label" parent="VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme = ExtResource("4_2xrbh")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "ABC                                           "
+
+[node name="Tổng điểm" type="Label" parent="VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme = ExtResource("4_2xrbh")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "1.000.000.000                             "
+
+[node name="Số giờ chơi" type="Label" parent="VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme = ExtResource("4_2xrbh")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "20"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Ranking" type="Label" parent="VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+theme = ExtResource("4_2xrbh")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "#2    "
+
+[node name="Tên" type="Label" parent="VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+theme = ExtResource("4_2xrbh")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "DEF                                           "
+
+[node name="Tổng điểm" type="Label" parent="VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+theme = ExtResource("4_2xrbh")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "1.000.000.000                             "
+
+[node name="Số giờ chơi" type="Label" parent="VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+theme = ExtResource("4_2xrbh")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "20"
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Ranking" type="Label" parent="VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+theme = ExtResource("4_2xrbh")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "#3    "
+
+[node name="Tên" type="Label" parent="VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+theme = ExtResource("4_2xrbh")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "GHI                                           "
+
+[node name="Tổng điểm" type="Label" parent="VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+theme = ExtResource("4_2xrbh")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "1.000.000.000                             "
+
+[node name="Số giờ chơi" type="Label" parent="VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+theme = ExtResource("4_2xrbh")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "20"
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Ranking" type="Label" parent="VBoxContainer/HBoxContainer6"]
+layout_mode = 2
+theme = ExtResource("4_2xrbh")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "#4    "
+
+[node name="Tên" type="Label" parent="VBoxContainer/HBoxContainer6"]
+layout_mode = 2
+theme = ExtResource("4_2xrbh")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "IJK                                           "
+
+[node name="Tổng điểm" type="Label" parent="VBoxContainer/HBoxContainer6"]
+layout_mode = 2
+theme = ExtResource("4_2xrbh")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "1.000.000.000                             "
+
+[node name="Số giờ chơi" type="Label" parent="VBoxContainer/HBoxContainer6"]
+layout_mode = 2
+theme = ExtResource("4_2xrbh")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "20"
