@@ -1,0 +1,63 @@
+[gd_scene load_steps=7 format=3 uid="uid://c0jqxhkmqghoa"]
+
+[ext_resource type="Texture2D" uid="uid://cjir4715uudmq" path="res://assets/images/loading/loading-1.png" id="1_pph0s"]
+[ext_resource type="FontFile" uid="uid://bdh12rg6fde33" path="res://assets/fonts/League Spartan.ttf" id="2_wv0sc"]
+[ext_resource type="Texture2D" uid="uid://chwugv87pvba7" path="res://assets/images/logo/logo.png" id="3_btlx8"]
+
+[sub_resource type="Gradient" id="Gradient_b32wj"]
+offsets = PackedFloat32Array(0, 0.428571, 0.694805, 0.857143, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.0253638, 0.0253638, 0.0253638, 1, 0.099986, 0.099986, 0.099986, 1, 0.310617, 0.310617, 0.310617, 0.572549, 1, 1, 1, 0.172549)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dk5lc"]
+gradient = SubResource("Gradient_b32wj")
+
+[sub_resource type="FontVariation" id="FontVariation_d0aic"]
+base_font = ExtResource("2_wv0sc")
+variation_opentype = {
+2003265652: 500
+}
+
+[node name="Loading" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Loading-1" type="Sprite2D" parent="."]
+position = Vector2(577, 300)
+scale = Vector2(1.12521, 1.15169)
+texture = ExtResource("1_pph0s")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 647.0
+offset_right = -1061.0
+offset_bottom = 1147.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -1.5708
+texture = SubResource("GradientTexture2D_dk5lc")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 803.0
+offset_top = 601.0
+offset_right = 1134.0
+offset_bottom = 638.0
+theme_override_colors/font_color = Color(0.89059, 0.89059, 0.89059, 1)
+theme_override_fonts/font = SubResource("FontVariation_d0aic")
+theme_override_font_sizes/font_size = 22
+text = "Đang tải tài nguyên (90%)"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Logo" type="Sprite2D" parent="."]
+position = Vector2(108, 604)
+scale = Vector2(0.34098, 0.34098)
+texture = ExtResource("3_btlx8")

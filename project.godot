@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Open Onet Connect"
-run/main_scene="res://assets/scenes/start/Start.tscn"
+run/main_scene="res://scenes/splash_screen/Splash.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 

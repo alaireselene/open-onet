@@ -1,0 +1,238 @@
+[gd_scene load_steps=13 format=3 uid="uid://bae1ww31s4hjg"]
+
+[ext_resource type="Theme" uid="uid://ckp1psjwtidnx" path="res://assets/sprites/ui/Default.tres" id="1_qvadt"]
+[ext_resource type="Texture2D" uid="uid://cif431iqi3ftk" path="res://assets/sprites/ui/UI_Flat_Banner.png" id="2_dn40v"]
+[ext_resource type="FontFile" uid="uid://bdh12rg6fde33" path="res://assets/fonts/League Spartan.ttf" id="3_f5ab2"]
+[ext_resource type="Texture2D" uid="uid://c2rmerountkp1" path="res://assets/sprites/icons/icon_continue.png" id="4_457ci"]
+[ext_resource type="Texture2D" uid="uid://b6b2p0b82anv3" path="res://assets/sprites/ui/UI2_Sheet.png" id="5_jncnx"]
+[ext_resource type="Texture2D" uid="uid://dhtprt2pcl6wt" path="res://assets/sprites/icons/icon_restart.png" id="6_lasbh"]
+[ext_resource type="Texture2D" uid="uid://cewijrqui0k7x" path="res://assets/sprites/icons/icon_clock.png" id="7_k0fs2"]
+[ext_resource type="Texture2D" uid="uid://dcog6wleqs064" path="res://assets/sprites/icons/icon_ranking.png" id="8_3pk4a"]
+[ext_resource type="Texture2D" uid="uid://du3ouync8205e" path="res://assets/sprites/icons/icon_coin.png" id="9_sj0dt"]
+
+[sub_resource type="FontVariation" id="FontVariation_kh3kf"]
+base_font = ExtResource("3_f5ab2")
+variation_opentype = {
+2003265652: 400
+}
+
+[sub_resource type="ImageTexture" id="ImageTexture_sxgxe"]
+
+[sub_resource type="FontVariation" id="FontVariation_6y8j0"]
+base_font = ExtResource("3_f5ab2")
+variation_opentype = {
+2003265652: 500
+}
+
+[node name="Finish" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Overlay" type="ColorRect" parent="."]
+modulate = Color(0, 0, 0, 0.8)
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.0338533, 0.0338533, 0.0338533, 1)
+
+[node name="Background" type="Panel" parent="."]
+modulate = Color(1, 1, 1, 0.470588)
+layout_mode = 0
+offset_left = 360.0
+offset_top = 96.0
+offset_right = 800.0
+offset_bottom = 448.0
+theme = ExtResource("1_qvadt")
+
+[node name="Heading" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 360.0
+offset_top = 80.0
+offset_right = 800.0
+offset_bottom = 176.0
+
+[node name="Ribbon" type="Sprite2D" parent="Heading"]
+position = Vector2(220, 48)
+scale = Vector2(7, 4.84062)
+texture = ExtResource("2_dn40v")
+
+[node name="Title" type="Label" parent="Heading"]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 24.0
+offset_right = 328.0
+offset_bottom = 80.0
+theme = ExtResource("1_qvadt")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "HOÀN THÀNH"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="Heading"]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 73.0
+offset_right = 328.0
+offset_bottom = 92.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("FontVariation_kh3kf")
+theme_override_font_sizes/font_size = 14
+text = "COMPLETED"
+horizontal_alignment = 1
+
+[node name="Level Control" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 384.0
+offset_top = 359.0
+offset_right = 768.0
+offset_bottom = 423.0
+
+[node name="Home" type="Button" parent="Level Control"]
+layout_mode = 0
+offset_left = 160.0
+offset_right = 224.0
+offset_bottom = 64.0
+theme = ExtResource("1_qvadt")
+icon = SubResource("ImageTexture_sxgxe")
+alignment = 0
+expand_icon = true
+
+[node name="Icon" type="Sprite2D" parent="Level Control/Home"]
+position = Vector2(32, 32)
+scale = Vector2(4.76006, 5.05556)
+texture = ExtResource("5_jncnx")
+region_enabled = true
+region_rect = Rect2(51.0693, 82.073, 10.029, 9.57053)
+
+[node name="Restart" type="Button" parent="Level Control"]
+layout_mode = 0
+offset_right = 144.0
+offset_bottom = 64.251
+theme = ExtResource("1_qvadt")
+text = "CHƠI LẠI
+Restart"
+icon = ExtResource("6_lasbh")
+alignment = 0
+expand_icon = true
+
+[node name="Continue" type="Button" parent="Level Control"]
+layout_mode = 0
+offset_left = 240.0
+offset_right = 384.0
+offset_bottom = 64.251
+theme = ExtResource("1_qvadt")
+text = "MÀN KẾ
+Next level"
+icon = ExtResource("4_457ci")
+alignment = 0
+expand_icon = true
+
+[node name="Score" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 488.0
+offset_top = 192.0
+offset_right = 664.0
+offset_bottom = 264.0
+
+[node name="Score Number" type="Label" parent="Score"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = -5.0
+offset_right = 169.0
+offset_bottom = 56.0
+theme = ExtResource("1_qvadt")
+theme_override_font_sizes/font_size = 50
+text = "000000"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="Score"]
+layout_mode = 0
+offset_left = 68.0
+offset_top = 51.0
+offset_right = 108.0
+offset_bottom = 74.0
+theme_override_fonts/font = SubResource("FontVariation_6y8j0")
+text = "điểm"
+horizontal_alignment = 1
+
+[node name="Stats" type="Control" parent="."]
+layout_mode = 1
+anchor_right = 0.41
+anchor_bottom = 0.407
+offset_left = 380.0
+offset_top = 267.0
+offset_right = 307.68
+offset_bottom = 75.264
+
+[node name="Time" type="Control" parent="Stats"]
+anchors_preset = 0
+offset_left = 8.0
+offset_top = 16.0
+offset_right = 112.0
+offset_bottom = 56.0
+
+[node name="Icon" type="Sprite2D" parent="Stats/Time"]
+position = Vector2(16, 18)
+scale = Vector2(2, 2)
+texture = ExtResource("7_k0fs2")
+
+[node name="Label" type="Label" parent="Stats/Time"]
+layout_mode = 0
+offset_left = 36.0
+offset_top = -2.0
+offset_right = 106.0
+offset_bottom = 35.0
+theme = ExtResource("1_qvadt")
+theme_override_font_sizes/font_size = 24
+text = "03:00"
+vertical_alignment = 1
+
+[node name="Best Score" type="Control" parent="Stats"]
+anchors_preset = 0
+offset_left = 128.0
+offset_top = 16.0
+offset_right = 232.0
+offset_bottom = 56.0
+
+[node name="Icon" type="Sprite2D" parent="Stats/Best Score"]
+position = Vector2(16, 17)
+scale = Vector2(2, 2)
+texture = ExtResource("8_3pk4a")
+
+[node name="Label" type="Label" parent="Stats/Best Score"]
+layout_mode = 0
+offset_left = 38.0
+offset_top = -2.0
+offset_right = 133.0
+offset_bottom = 35.0
+theme = ExtResource("1_qvadt")
+theme_override_font_sizes/font_size = 24
+text = "000000"
+vertical_alignment = 1
+
+[node name="Coin" type="Control" parent="Stats"]
+anchors_preset = 0
+offset_left = 278.0
+offset_top = 16.0
+offset_right = 382.0
+offset_bottom = 56.0
+
+[node name="Icon" type="Sprite2D" parent="Stats/Coin"]
+position = Vector2(16, 16)
+scale = Vector2(2, 2)
+texture = ExtResource("9_sj0dt")
+
+[node name="Label" type="Label" parent="Stats/Coin"]
+layout_mode = 0
+offset_left = 38.0
+offset_top = -2.0
+offset_right = 112.0
+offset_bottom = 35.0
+theme = ExtResource("1_qvadt")
+theme_override_font_sizes/font_size = 24
+text = "100"
+vertical_alignment = 1
