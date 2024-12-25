@@ -1,0 +1,237 @@
+[gd_scene load_steps=13 format=3 uid="uid://3q7ry6ohx8mr"]
+
+[ext_resource type="Texture2D" uid="uid://b6ii3elgebib0" path="res://assets/sprites/ui/UI_Frame_Yellow.png" id="1_c2vw5"]
+[ext_resource type="PackedScene" uid="uid://pp3j21o48u67" path="res://scenes/inventory/slot_blue.tscn" id="2_53rl3"]
+[ext_resource type="PackedScene" uid="uid://ddb4qo1khr423" path="res://scenes/inventory/slot_yellow.tscn" id="3_eur3g"]
+[ext_resource type="Texture2D" uid="uid://ctb2mii83tbt3" path="res://assets/sprites/icons/skill_suggest.png" id="4_n5jhd"]
+[ext_resource type="Theme" uid="uid://ckp1psjwtidnx" path="res://assets/sprites/ui/Default.tres" id="5_yp0y7"]
+[ext_resource type="FontFile" uid="uid://bdh12rg6fde33" path="res://assets/fonts/League Spartan.ttf" id="6_ik5ho"]
+[ext_resource type="Texture2D" uid="uid://ckd3e67g1iygk" path="res://assets/sprites/icons/skill_critical.png" id="10_1u5ym"]
+[ext_resource type="Texture2D" uid="uid://qtb7ikqog5s6" path="res://assets/sprites/icons/skill_freeze.png" id="11_c0wed"]
+[ext_resource type="Texture2D" uid="uid://bcnbo6vq357oj" path="res://assets/sprites/ui/UI_Flat_ButtonCheck.png" id="12_rr7tv"]
+
+[sub_resource type="FontVariation" id="FontVariation_pno0q"]
+base_font = ExtResource("6_ik5ho")
+variation_opentype = {
+2003265652: 500
+}
+
+[sub_resource type="FontVariation" id="FontVariation_vx5wt"]
+base_font = ExtResource("6_ik5ho")
+variation_opentype = {
+2003265652: 400
+}
+
+[sub_resource type="FontVariation" id="FontVariation_2nrmr"]
+base_font = ExtResource("6_ik5ho")
+variation_opentype = {
+2003265652: 400
+}
+
+[node name="Inventory" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(12, 10.125)
+texture = ExtResource("1_c2vw5")
+
+[node name="Item Information" type="Control" parent="."]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 671.0
+offset_top = 110.0
+offset_right = 1082.0
+offset_bottom = 606.0
+
+[node name="Background" type="PanelContainer" parent="Item Information"]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 12.0
+offset_bottom = -2.0
+
+[node name="Slot" parent="Item Information/Background" instance=ExtResource("2_53rl3")]
+layout_mode = 2
+
+[node name="Item" type="PanelContainer" parent="Item Information"]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 44.0
+offset_top = 45.0
+offset_right = -257.0
+offset_bottom = -341.0
+
+[node name="Slot2" parent="Item Information/Item" instance=ExtResource("3_eur3g")]
+layout_mode = 2
+
+[node name="SkillSuggest2" type="Sprite2D" parent="Item Information/Item"]
+position = Vector2(55, 55)
+scale = Vector2(6.1875, 6.1875)
+texture = ExtResource("4_n5jhd")
+
+[node name="Item name" type="Label" parent="Item Information"]
+layout_mode = 0
+offset_left = 169.0
+offset_top = 44.0
+offset_right = 331.0
+offset_bottom = 89.0
+theme = ExtResource("5_yp0y7")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 36
+text = "TỈNH THỨC"
+
+[node name="Item type" type="Label" parent="Item Information"]
+layout_mode = 0
+offset_left = 170.0
+offset_top = 88.0
+offset_right = 235.0
+offset_bottom = 112.0
+theme = ExtResource("5_yp0y7")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("FontVariation_pno0q")
+theme_override_font_sizes/font_size = 24
+text = "Bổ trợ"
+vertical_alignment = 1
+
+[node name="Coin amount" type="Label" parent="Item Information"]
+layout_mode = 0
+offset_left = 172.0
+offset_top = 109.0
+offset_right = 251.0
+offset_bottom = 154.0
+theme = ExtResource("5_yp0y7")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "x50"
+vertical_alignment = 1
+
+[node name="Item description" type="Label" parent="Item Information"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 170.0
+offset_right = 129.0
+offset_bottom = 215.0
+theme = ExtResource("5_yp0y7")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 22
+text = "Mô tả"
+vertical_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Item Information"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 210.0
+offset_right = 370.0
+offset_bottom = 356.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = SubResource("FontVariation_vx5wt")
+theme_override_font_sizes/normal_font_size = 20
+text = "Khi sử dụng, nó sẽ gợi ý ngay lập tức một cặp tile Pokémon có thể kết nối được, giúp người chơi dễ dàng tìm ra nước đi tiếp theo."
+scroll_active = false
+
+[node name="Container" type="TabContainer" parent="."]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 113.0
+offset_right = 647.0
+offset_bottom = 605.0
+theme = ExtResource("5_yp0y7")
+theme_override_font_sizes/font_size = 29
+tab_alignment = 2
+current_tab = 0
+tab_focus_mode = 1
+
+[node name="Bổ trợ" type="Control" parent="Container"]
+layout_mode = 2
+theme = ExtResource("5_yp0y7")
+theme_type_variation = &"HeaderLarge"
+metadata/_tab_index = 0
+
+[node name="GridContainer" type="GridContainer" parent="Container/Bổ trợ"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 19.0
+offset_right = 243.0
+offset_bottom = 159.0
+scale = Vector2(2.5, 2.5)
+theme = ExtResource("5_yp0y7")
+columns = 5
+
+[node name="Button" type="Button" parent="Container/Bổ trợ/GridContainer"]
+layout_mode = 2
+text = "      "
+
+[node name="SkillCritical" type="Sprite2D" parent="Container/Bổ trợ/GridContainer/Button"]
+position = Vector2(21.6667, 20)
+scale = Vector2(2.13802, 2.13802)
+texture = ExtResource("10_1u5ym")
+
+[node name="Button2" type="Button" parent="Container/Bổ trợ/GridContainer"]
+layout_mode = 2
+text = "      "
+
+[node name="SkillFreeze" type="Sprite2D" parent="Container/Bổ trợ/GridContainer/Button2"]
+position = Vector2(21.6667, 20)
+scale = Vector2(2.13802, 2.13802)
+texture = ExtResource("11_c0wed")
+
+[node name="Button3" type="Button" parent="Container/Bổ trợ/GridContainer"]
+layout_mode = 2
+text = "      "
+
+[node name="SkillFreeze" type="Sprite2D" parent="Container/Bổ trợ/GridContainer/Button3"]
+position = Vector2(21.6667, 20)
+scale = Vector2(2.13802, 2.13802)
+texture = ExtResource("4_n5jhd")
+
+[node name="Skin" type="Control" parent="Container"]
+visible = false
+layout_mode = 2
+theme = ExtResource("5_yp0y7")
+theme_type_variation = &"HeaderLarge"
+metadata/_tab_index = 1
+
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 48.0
+offset_top = 43.0
+offset_right = 203.0
+offset_bottom = 123.0
+
+[node name="Title" type="Label" parent="Control"]
+layout_mode = 0
+offset_right = 155.0
+offset_bottom = 56.0
+theme = ExtResource("5_yp0y7")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 45
+text = "KHO ĐỒ"
+
+[node name="Subtitle" type="Label" parent="Control"]
+layout_mode = 0
+offset_top = 53.0
+offset_right = 96.0
+offset_bottom = 80.0
+theme = ExtResource("5_yp0y7")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("FontVariation_2nrmr")
+theme_override_font_sizes/font_size = 28
+text = "Inventory"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1050.0
+offset_top = 40.0
+offset_right = 1107.0
+offset_bottom = 96.0
+theme = ExtResource("5_yp0y7")
+theme_override_font_sizes/font_size = 25
+icon = ExtResource("12_rr7tv")
+expand_icon = true
