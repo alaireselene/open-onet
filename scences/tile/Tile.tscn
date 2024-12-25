@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://wqcrdku0j5s6"]
+
+[ext_resource type="Script" path="res://scences/tile/tile.gd" id="1_0j40u"]
+
+[node name="Tile" type="Button"]
+custom_minimum_size = Vector2(120, 112)
+offset_right = 120.0
+offset_bottom = 112.0
+script = ExtResource("1_0j40u")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_top = -10
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+layout_mode = 2
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

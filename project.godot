@@ -15,6 +15,11 @@ run/main_scene="res://scenes/splash_screen/splash_screen.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+SceneHistory="*res://scences/scene_history.gd"
+SceneLoader="*res://scences/scene_loader.gd"
+
 [dotnet]
 
 project/assembly_name="Open Onet Connect"
