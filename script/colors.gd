@@ -1,0 +1,7 @@
+class_name Colors
+
+const YELLOW := Color("FFEA00")
+const GREYFORLINING := Color("B9B5C3")
+const REDTRACELINE := Color("D30000")
+const DARKERYELLOWFORCHOOSINGTILES := Color("FFB100")
+const BLUEOUTERLININGFORCHOOSINGTILES := Color("425BBD")

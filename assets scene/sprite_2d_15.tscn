@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://llr2b2nqcqrw"]
+
+[ext_resource type="Texture2D" uid="uid://b1jiprdf3hf0m" path="res://Assets/pokemons.png" id="1_44v8t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3iosw"]
+size = Vector2(80, 80)
+
+[node name="Area2D" type="Area2D"]
+
+[node name="Sprite2D15" type="Sprite2D" parent="."]
+texture = ExtResource("1_44v8t")
+region_enabled = true
+region_rect = Rect2(880, 80, 80, 80)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3iosw")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(18, 18)

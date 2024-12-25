@@ -11,8 +11,19 @@ config_version=5
 [application]
 
 config/name="Open Onet Connect"
-config/features=PackedStringArray("4.3", "GL Compatibility")
+run/main_scene="res://Gameboard.tscn"
+config/features=PackedStringArray("4.3", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Game="*res://script/game.gd"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1440
+window/stretch/mode="canvas_items"
 
 [dotnet]
 
