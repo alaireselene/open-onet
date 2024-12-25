@@ -1,0 +1,87 @@
+[gd_scene load_steps=3 format=3 uid="uid://bb3iqmhqdhv2w"]
+
+[ext_resource type="Texture2D" uid="uid://dqwv04k07xj8n" path="res://data/images/close.jpg" id="1_gqif4"]
+[ext_resource type="Script" path="res://scences/achievement/achievement.gd" id="1_t5yjt"]
+
+[node name="Achievement" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_t5yjt")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 0
+offset_left = 157.0
+offset_top = 116.0
+offset_right = 348.0
+offset_bottom = 166.0
+scale = Vector2(2, 2)
+theme_override_constants/h_separation = 20
+columns = 4
+
+[node name="Button" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "Arcade"
+
+[node name="Label" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "Top
+"
+
+[node name="Label2" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "Name"
+
+[node name="Label3" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "Record"
+
+[node name="Button2" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "Challenge"
+
+[node name="Label4" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "1"
+
+[node name="Label5" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "viet#123"
+
+[node name="Label6" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "3560"
+
+[node name="Button3" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "Event"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(2, 2)
+theme_override_constants/margin_left = 30
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+text = "Leather Board	"
+
+[node name="Back" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -67.0
+offset_top = 11.0
+offset_right = 166.0
+offset_bottom = 244.0
+grow_horizontal = 0
+scale = Vector2(0.2, 0.2)
+mouse_default_cursor_shape = 2
+icon = ExtResource("1_gqif4")
+
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

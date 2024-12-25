@@ -1,0 +1,164 @@
+[gd_scene load_steps=10 format=3 uid="uid://mmhs2dppmew"]
+
+[ext_resource type="Script" path="res://scences/main_menu/main_menu.gd" id="1_r17sc"]
+[ext_resource type="Texture2D" uid="uid://c3mn01f05qmm6" path="res://icon.svg" id="1_y8ssy"]
+[ext_resource type="Texture2D" uid="uid://dvexe0vv1gesa" path="res://data/images/2.png" id="2_fp7i2"]
+[ext_resource type="Texture2D" uid="uid://b635nbal8ugux" path="res://data/images/3.png" id="3_5a6eu"]
+[ext_resource type="Texture2D" uid="uid://xevgcnrlb8g8" path="res://data/images/1.png" id="4_7kouw"]
+[ext_resource type="Texture2D" uid="uid://bl7fp6e2ca0lf" path="res://data/images/shop.png" id="6_11aw0"]
+[ext_resource type="Texture2D" uid="uid://bjhcgtsh3g08b" path="res://data/images/achievement.png" id="7_a4icw"]
+
+[sub_resource type="GDScript" id="GDScript_paaeq"]
+script/source = "extends Container
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="GDScript" id="GDScript_dxggv"]
+script/source = "extends TextureRect
+"
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_r17sc")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -192.0
+offset_top = 9.0
+offset_right = 177.0
+offset_bottom = 129.0
+grow_horizontal = 0
+scale = Vector2(0.5, 0.5)
+theme_override_constants/separation = 20
+
+[node name="Instruction" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_default_cursor_shape = 2
+icon = ExtResource("2_fp7i2")
+
+[node name="Notification" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+icon = ExtResource("3_5a6eu")
+
+[node name="Setting" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_default_cursor_shape = 2
+icon = ExtResource("4_7kouw")
+
+[node name="PlayerInfor" type="Container" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = SubResource("GDScript_paaeq")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PlayerInfor"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="TextureRect" type="TextureRect" parent="PlayerInfor/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_y8ssy")
+stretch_mode = 6
+script = SubResource("GDScript_dxggv")
+
+[node name="MarginContainer" type="MarginContainer" parent="PlayerInfor/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PlayerInfor/HBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="PlayerInfor/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Name
+"
+
+[node name="Label2" type="Label" parent="PlayerInfor/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "ID
+"
+
+[node name="Event" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 106.0
+offset_top = 168.0
+offset_right = 469.0
+offset_bottom = 604.0
+texture = ExtResource("1_y8ssy")
+
+[node name="ArcadeMode" type="TextureRect" parent="."]
+layout_mode = 2
+offset_left = 514.0
+offset_top = 173.0
+offset_right = 1016.0
+offset_bottom = 319.0
+mouse_default_cursor_shape = 2
+texture = ExtResource("1_y8ssy")
+
+[node name="PvP" type="TextureRect" parent="."]
+layout_mode = 2
+offset_left = 513.0
+offset_top = 344.0
+offset_right = 753.0
+offset_bottom = 472.0
+texture = ExtResource("1_y8ssy")
+
+[node name="ChallengeMode" type="TextureRect" parent="."]
+layout_mode = 2
+offset_left = 775.0
+offset_top = 344.0
+offset_right = 1015.0
+offset_bottom = 472.0
+size_flags_horizontal = 8
+texture = ExtResource("1_y8ssy")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 875.0
+offset_top = 523.0
+offset_right = 1304.0
+offset_bottom = 693.0
+scale = Vector2(0.3, 0.3)
+theme_override_constants/separation = 20
+
+[node name="Shop" type="Button" parent="HBoxContainer2"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+icon = ExtResource("6_11aw0")
+
+[node name="Achievement" type="Button" parent="HBoxContainer2"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+icon = ExtResource("7_a4icw")
+
+[connection signal="pressed" from="HBoxContainer/Instruction" to="." method="_on_instruction_pressed"]
+[connection signal="pressed" from="HBoxContainer/Setting" to="." method="_on_setting_pressed"]
+[connection signal="gui_input" from="ArcadeMode" to="." method="_on_arcade_mode_gui_input"]
+[connection signal="pressed" from="HBoxContainer2/Shop" to="." method="_on_shop_pressed"]
+[connection signal="pressed" from="HBoxContainer2/Achievement" to="." method="_on_achievement_pressed"]
