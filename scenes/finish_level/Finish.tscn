@@ -1,5 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://bae1ww31s4hjg"]
+[gd_scene load_steps=14 format=3 uid="uid://bae1ww31s4hjg"]
 
+[ext_resource type="Script" path="res://scenes/finish_level/finish.gd" id="1_h6agy"]
 [ext_resource type="Theme" uid="uid://ckp1psjwtidnx" path="res://assets/sprites/ui/Default.tres" id="1_xudx4"]
 [ext_resource type="Texture2D" uid="uid://cif431iqi3ftk" path="res://assets/sprites/ui/UI_Flat_Banner.png" id="2_0v7hx"]
 [ext_resource type="FontFile" uid="uid://bdh12rg6fde33" path="res://assets/fonts/League Spartan.ttf" id="3_wxws1"]
@@ -31,13 +32,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_h6agy")
 
 [node name="Overlay" type="ColorRect" parent="."]
 modulate = Color(0, 0, 0, 0.8)
 layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 648.0
-color = Color(0.0338533, 0.0338533, 0.0338533, 1)
+color = Color(0.0352941, 0.0352941, 0.0352941, 1)
 
 [node name="Background" type="Panel" parent="."]
 modulate = Color(1, 1, 1, 0.470588)
@@ -119,7 +121,7 @@ icon = ExtResource("5_2fcs2")
 alignment = 0
 expand_icon = true
 
-[node name="Continue" type="Button" parent="Level Control"]
+[node name="Next Level" type="Button" parent="Level Control"]
 layout_mode = 0
 offset_left = 240.0
 offset_right = 384.0
@@ -236,3 +238,7 @@ theme = ExtResource("1_xudx4")
 theme_override_font_sizes/font_size = 24
 text = "100"
 vertical_alignment = 1
+
+[connection signal="pressed" from="Level Control/Home" to="." method="_on_home_pressed"]
+[connection signal="pressed" from="Level Control/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="Level Control/Next Level" to="." method="_on_next_level_pressed"]

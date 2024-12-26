@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://dvgkbm2bprrjq"]
+[gd_scene load_steps=16 format=3 uid="uid://dvgkbm2bprrjq"]
 
 [ext_resource type="Texture2D" uid="uid://biayybrg431d8" path="res://assets/images/levels_bg/battle-2.png" id="1_3id55"]
+[ext_resource type="Script" path="res://scenes/game_mode/arcade/level/level.gd" id="1_rlhs1"]
 [ext_resource type="Theme" uid="uid://ckp1psjwtidnx" path="res://assets/sprites/ui/Default.tres" id="2_3pr77"]
 [ext_resource type="Script" path="res://scenes/game_mode/arcade/level/grid_gen.gd" id="2_d0gln"]
 [ext_resource type="FontFile" uid="uid://bdh12rg6fde33" path="res://assets/fonts/League Spartan.ttf" id="3_nmfup"]
@@ -10,6 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://cw1ddfh84sxg3" path="res://assets/sprites/ui/UI_Flat_Bar.png" id="5_cfqp3"]
 [ext_resource type="Texture2D" uid="uid://bdi2bnc5gcgs4" path="res://assets/sprites/icons/icon_pause.png" id="5_tj68f"]
 [ext_resource type="Texture2D" uid="uid://qtb7ikqog5s6" path="res://assets/sprites/icons/skill_freeze.png" id="6_oqxam"]
+[ext_resource type="PackedScene" uid="uid://cfhmxtjernt8l" path="res://scenes/game_mode/core/main/main.tscn" id="12_6wnv7"]
+[ext_resource type="PackedScene" uid="uid://c4gmrnvwadycj" path="res://scenes/pause_menu/pause_menu.tscn" id="13_c11kr"]
+[ext_resource type="PackedScene" uid="uid://bae1ww31s4hjg" path="res://scenes/finish_level/Finish.tscn" id="14_waqev"]
 
 [sub_resource type="FontVariation" id="FontVariation_mnllv"]
 base_font = ExtResource("3_nmfup")
@@ -17,15 +21,11 @@ variation_opentype = {
 2003265652: 400
 }
 
-[node name="Level" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Level" type="Node2D"]
+script = ExtResource("1_rlhs1")
 
 [node name="Background" type="Control" parent="."]
+layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -191,6 +191,7 @@ layout_mode = 0
 offset_top = 32.0
 offset_right = 168.0
 offset_bottom = 96.0
+mouse_default_cursor_shape = 2
 theme = ExtResource("2_3pr77")
 text = "TỈNH THỨC
 x2"
@@ -203,6 +204,7 @@ layout_mode = 0
 offset_top = 104.0
 offset_right = 168.0
 offset_bottom = 168.0
+mouse_default_cursor_shape = 2
 theme = ExtResource("2_3pr77")
 text = "BÙNG NỔ
 x5"
@@ -215,6 +217,7 @@ layout_mode = 0
 offset_top = 176.0
 offset_right = 168.0
 offset_bottom = 240.0
+mouse_default_cursor_shape = 2
 theme = ExtResource("2_3pr77")
 text = "ĐÔNG CỨNG
 x5"
@@ -224,7 +227,6 @@ expand_icon = true
 
 [node name="Tiles Panel" type="Panel" parent="."]
 modulate = Color(1, 1, 1, 0.415686)
-layout_mode = 0
 offset_left = 297.0
 offset_top = 40.0
 offset_right = 1104.0
@@ -232,16 +234,31 @@ offset_bottom = 609.0
 theme = ExtResource("2_3pr77")
 
 [node name="Pause Button" type="Button" parent="."]
-layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.972
 anchor_bottom = 0.062
-offset_left = 1104.0
-offset_top = -5.0
-offset_right = 32.256
-offset_bottom = 18.824
+offset_left = 1095.0
+offset_top = -4.0
+offset_right = 1164.0
+offset_bottom = 68.0
+mouse_default_cursor_shape = 2
 action_mode = 0
 icon = ExtResource("5_tj68f")
 flat = true
 icon_alignment = 1
 expand_icon = true
+
+[node name="Main" parent="." instance=ExtResource("12_6wnv7")]
+position = Vector2(330, -12)
+scale = Vector2(0.6, 0.6)
+
+[node name="PauseMenu" parent="." instance=ExtResource("13_c11kr")]
+visible = false
+
+[node name="ScoreTimer" type="Timer" parent="."]
+
+[node name="Finish" parent="." instance=ExtResource("14_waqev")]
+visible = false
+
+[connection signal="pressed" from="Pause Button" to="." method="_on_pause_button_pressed"]
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]

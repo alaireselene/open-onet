@@ -1,5 +1,6 @@
-[gd_scene load_steps=18 format=3 uid="uid://di8d3sxgjyjxv"]
+[gd_scene load_steps=19 format=3 uid="uid://di8d3sxgjyjxv"]
 
+[ext_resource type="Script" path="res://scenes/main_menu/main_menu.gd" id="1_1vx2a"]
 [ext_resource type="Texture2D" uid="uid://db8o7ihxo4adt" path="res://assets/images/main_menu/background-main-menu.png" id="1_vu5e7"]
 [ext_resource type="Texture2D" uid="uid://pdf3xe78c6v5" path="res://assets/images/main_menu/Open.png" id="2_anfkj"]
 [ext_resource type="FontFile" uid="uid://e37tolg3c5fc" path="res://assets/fonts/Determination Sans.otf" id="2_jujfb"]
@@ -35,6 +36,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_1vx2a")
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(577.13, 308)
@@ -108,6 +110,7 @@ offset_left = 7.0
 offset_top = 118.0
 offset_right = 297.0
 offset_bottom = 196.251
+mouse_default_cursor_shape = 2
 theme = ExtResource("5_rbgkh")
 theme_override_font_sizes/font_size = 22
 text = "Chế độ Thử thách"
@@ -120,6 +123,7 @@ offset_left = 306.0
 offset_top = 118.0
 offset_right = 596.0
 offset_bottom = 196.251
+mouse_default_cursor_shape = 2
 theme = ExtResource("5_rbgkh")
 theme_override_font_sizes/font_size = 22
 text = "Đối kháng Online
@@ -133,6 +137,7 @@ offset_left = 6.0
 offset_top = 10.0
 offset_right = 597.0
 offset_bottom = 104.0
+mouse_default_cursor_shape = 2
 theme = ExtResource("5_rbgkh")
 theme_override_font_sizes/font_size = 22
 text = "Chế độ giải đố"
@@ -153,11 +158,12 @@ offset_top = 5.0
 offset_right = 369.0
 offset_bottom = 105.0
 
-[node name="Button" type="Button" parent="Ultities Button/Shop"]
+[node name="shop" type="Button" parent="Ultities Button/Shop"]
 layout_mode = 0
 offset_top = 1.0
 offset_right = 77.0
 offset_bottom = 78.0
+mouse_default_cursor_shape = 2
 theme = ExtResource("5_rbgkh")
 theme_override_fonts/font = ExtResource("2_jujfb")
 theme_override_font_sizes/font_size = 22
@@ -184,11 +190,12 @@ offset_top = 5.0
 offset_right = 474.0
 offset_bottom = 105.0
 
-[node name="Button" type="Button" parent="Ultities Button/Leatherboard"]
+[node name="achievement" type="Button" parent="Ultities Button/Leatherboard"]
 layout_mode = 0
 offset_top = 1.0
 offset_right = 77.0
 offset_bottom = 78.0
+mouse_default_cursor_shape = 2
 theme = ExtResource("5_rbgkh")
 theme_override_fonts/font = ExtResource("2_jujfb")
 theme_override_font_sizes/font_size = 22
@@ -216,11 +223,12 @@ offset_top = 5.0
 offset_right = 578.0
 offset_bottom = 105.0
 
-[node name="Button" type="Button" parent="Ultities Button/Inventory"]
+[node name="Inventory" type="Button" parent="Ultities Button/Inventory"]
 layout_mode = 0
 offset_top = 1.0
 offset_right = 77.0
 offset_bottom = 78.0
+mouse_default_cursor_shape = 2
 theme = ExtResource("5_rbgkh")
 theme_override_fonts/font = ExtResource("2_jujfb")
 theme_override_font_sizes/font_size = 22
@@ -269,6 +277,7 @@ offset_left = 862.0
 offset_top = 40.0
 offset_right = 927.0
 offset_bottom = 95.0
+mouse_default_cursor_shape = 2
 
 [node name="Icon" type="Sprite2D" parent="Notification"]
 position = Vector2(27, 23)
@@ -291,6 +300,7 @@ offset_left = 977.0
 offset_top = 33.0
 offset_right = 1036.0
 offset_bottom = 92.0
+mouse_default_cursor_shape = 2
 theme = ExtResource("5_rbgkh")
 icon = ExtResource("14_82x06")
 icon_alignment = 1
@@ -302,7 +312,15 @@ offset_left = 1054.0
 offset_top = 33.0
 offset_right = 1113.0
 offset_bottom = 92.0
+mouse_default_cursor_shape = 2
 theme = ExtResource("5_rbgkh")
 icon = ExtResource("15_y3iyc")
 icon_alignment = 1
 expand_icon = true
+
+[connection signal="pressed" from="Mode Button/Arcade" to="." method="_on_arcade_pressed"]
+[connection signal="pressed" from="Ultities Button/Shop/shop" to="." method="_on_shop_pressed"]
+[connection signal="pressed" from="Ultities Button/Leatherboard/achievement" to="." method="_on_achievement_pressed"]
+[connection signal="pressed" from="Ultities Button/Inventory/Inventory" to="." method="_on_inventory_pressed"]
+[connection signal="pressed" from="Guide Button" to="." method="_on_guide_button_pressed"]
+[connection signal="pressed" from="Settings Button" to="." method="_on_settings_button_pressed"]

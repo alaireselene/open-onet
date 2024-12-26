@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://brev6set6170c"]
+[gd_scene load_steps=17 format=3 uid="uid://brev6set6170c"]
 
 [ext_resource type="Texture2D" uid="uid://b6ii3elgebib0" path="res://assets/sprites/ui/UI_Frame_Yellow.png" id="1_mcvwl"]
+[ext_resource type="Script" path="res://scenes/shop/shop.gd" id="1_qmtcy"]
 [ext_resource type="Theme" uid="uid://ckp1psjwtidnx" path="res://assets/sprites/ui/Default.tres" id="2_cmcyl"]
 [ext_resource type="PackedScene" uid="uid://pp3j21o48u67" path="res://scenes/inventory/slot_blue.tscn" id="2_odocv"]
 [ext_resource type="PackedScene" uid="uid://ddb4qo1khr423" path="res://scenes/inventory/slot_yellow.tscn" id="3_dh4df"]
@@ -10,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://ckd3e67g1iygk" path="res://assets/sprites/icons/skill_critical.png" id="6_ooeui"]
 [ext_resource type="Texture2D" uid="uid://du3ouync8205e" path="res://assets/sprites/icons/icon_coin.png" id="7_7nves"]
 [ext_resource type="Texture2D" uid="uid://qtb7ikqog5s6" path="res://assets/sprites/icons/skill_freeze.png" id="7_am7xr"]
-[ext_resource type="Theme" uid="uid://b852relgqgucf" path="res://assets/sprites/ui/Green.tres" id="8_v182f"]
+[ext_resource type="Theme" uid="uid://b7t8nvwf07i4n" path="res://assets/sprites/ui/Green.tres" id="8_v182f"]
 [ext_resource type="Texture2D" uid="uid://dq0yljcnuulhy" path="res://assets/sprites/icons/icon_shop.png" id="9_ns6rh"]
 
 [sub_resource type="FontVariation" id="FontVariation_pno0q"]
@@ -38,6 +39,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_qmtcy")
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(576, 324)
@@ -133,6 +135,7 @@ scale = Vector2(2.1875, 2.1875)
 texture = ExtResource("7_7nves")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Item Information"]
+layout_mode = 0
 offset_left = 50.0
 offset_top = 210.0
 offset_right = 370.0
@@ -149,6 +152,7 @@ offset_left = 251.0
 offset_top = 363.0
 offset_right = 377.0
 offset_bottom = 414.0
+mouse_default_cursor_shape = 2
 theme = ExtResource("8_v182f")
 theme_override_font_sizes/font_size = 21
 text = "Mua x1"
@@ -185,6 +189,7 @@ columns = 5
 
 [node name="Button" type="Button" parent="Container/Bổ trợ/GridContainer"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 text = "      "
 
 [node name="SkillCritical" type="Sprite2D" parent="Container/Bổ trợ/GridContainer/Button"]
@@ -194,6 +199,7 @@ texture = ExtResource("6_ooeui")
 
 [node name="Button2" type="Button" parent="Container/Bổ trợ/GridContainer"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 text = "      "
 
 [node name="SkillFreeze" type="Sprite2D" parent="Container/Bổ trợ/GridContainer/Button2"]
@@ -203,6 +209,7 @@ texture = ExtResource("7_am7xr")
 
 [node name="Button3" type="Button" parent="Container/Bổ trợ/GridContainer"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 text = "      "
 
 [node name="SkillFreeze" type="Sprite2D" parent="Container/Bổ trợ/GridContainer/Button3"]
@@ -244,13 +251,16 @@ theme_override_fonts/font = SubResource("FontVariation_2nrmr")
 theme_override_font_sizes/font_size = 28
 text = "Magic Shop"
 
-[node name="Button" type="Button" parent="."]
+[node name="Back" type="Button" parent="."]
 layout_mode = 0
 offset_left = 1050.0
 offset_top = 40.0
 offset_right = 1107.0
 offset_bottom = 96.0
+mouse_default_cursor_shape = 2
 theme = ExtResource("2_cmcyl")
 theme_override_font_sizes/font_size = 25
 icon = ExtResource("4_d2tsk")
 expand_icon = true
+
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

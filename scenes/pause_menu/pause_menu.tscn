@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://c4gmrnvwadycj"]
+[gd_scene load_steps=10 format=3 uid="uid://c4gmrnvwadycj"]
 
+[ext_resource type="Script" path="res://scenes/pause_menu/pause_menu.gd" id="1_jrc4p"]
 [ext_resource type="Theme" uid="uid://ckp1psjwtidnx" path="res://assets/sprites/ui/Default.tres" id="1_qvadt"]
 [ext_resource type="Texture2D" uid="uid://cif431iqi3ftk" path="res://assets/sprites/ui/UI_Flat_Banner.png" id="2_dn40v"]
 [ext_resource type="FontFile" uid="uid://bdh12rg6fde33" path="res://assets/fonts/League Spartan.ttf" id="3_f5ab2"]
@@ -22,6 +23,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_jrc4p")
 
 [node name="Overlay" type="ColorRect" parent="."]
 modulate = Color(0, 0, 0, 0.8)
@@ -79,6 +81,7 @@ offset_left = 400.0
 offset_top = 208.0
 offset_right = 568.0
 offset_bottom = 272.251
+mouse_default_cursor_shape = 2
 theme = ExtResource("1_qvadt")
 text = "TIẾP TỤC
 Continue"
@@ -92,6 +95,7 @@ offset_left = 592.0
 offset_top = 208.0
 offset_right = 752.0
 offset_bottom = 272.251
+mouse_default_cursor_shape = 2
 theme = ExtResource("1_qvadt")
 text = "CHƠI LẠI
 Restart"
@@ -105,6 +109,7 @@ offset_left = 552.0
 offset_top = 312.0
 offset_right = 600.0
 offset_bottom = 360.0
+mouse_default_cursor_shape = 2
 theme = ExtResource("1_qvadt")
 icon = SubResource("ImageTexture_sxgxe")
 alignment = 0
@@ -116,3 +121,7 @@ scale = Vector2(2.82466, 3.00001)
 texture = ExtResource("5_jncnx")
 region_enabled = true
 region_rect = Rect2(51.0693, 82.073, 10.029, 9.57053)
+
+[connection signal="pressed" from="Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="Home" to="." method="_on_home_pressed"]

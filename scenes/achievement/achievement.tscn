@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://ctheog5lsbowt"]
+[gd_scene load_steps=8 format=3 uid="uid://ctheog5lsbowt"]
 
+[ext_resource type="Script" path="res://scenes/achievement/achievement.gd" id="1_4ejmt"]
 [ext_resource type="Texture2D" uid="uid://mo0cg8tvc5ig" path="res://assets/sprites/ui/UI_Flat_Frame.png" id="1_qfe4y"]
 [ext_resource type="Texture2D" uid="uid://u1nvwgbkgkbo" path="res://assets/sprites/ui/UI_Flat_Banner02.png" id="2_7n7f3"]
 [ext_resource type="Texture2D" uid="uid://dcog6wleqs064" path="res://assets/sprites/icons/icon_ranking.png" id="3_yy4hd"]
@@ -14,6 +15,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_4ejmt")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 0
@@ -55,7 +57,7 @@ text = "Thành tích"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button" type="Button" parent="."]
+[node name="Back" type="Button" parent="."]
 layout_mode = 0
 offset_left = 1060.0
 offset_top = 9.0
@@ -257,3 +259,5 @@ theme = ExtResource("4_2xrbh")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 30
 text = "20"
+
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
