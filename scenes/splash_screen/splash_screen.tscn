@@ -15,7 +15,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_default_cursor_shape = 2
 script = ExtResource("1_kxhby")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
@@ -40,10 +39,12 @@ texture = ExtResource("3_dybws")
 
 [node name="Seperator" type="Control" parent="MarginContainer"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 
 [node name="Label" type="Label" parent="MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 8
+mouse_default_cursor_shape = 2
 theme_override_fonts/font = ExtResource("4_dnsfv")
 theme_override_font_sizes/font_size = 35
 text = "Bấm phím bất kỳ để bắt đầu"
@@ -57,6 +58,7 @@ offset_top = 577.0
 offset_right = 1020.0
 offset_bottom = 1545.0
 scale = Vector2(0.0416072, 0.0416072)
+mouse_default_cursor_shape = 2
 icon = ExtResource("5_dy1rr")
 icon_alignment = 1
 expand_icon = true
@@ -68,6 +70,7 @@ offset_top = 577.0
 offset_right = 1081.0
 offset_bottom = 1545.0
 scale = Vector2(0.0416072, 0.0416072)
+mouse_default_cursor_shape = 2
 text = " Set"
 icon = ExtResource("6_bp60m")
 icon_alignment = 1

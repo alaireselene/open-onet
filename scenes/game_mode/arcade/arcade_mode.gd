@@ -6,4 +6,4 @@ func _on_back_pressed():
 
 
 func _on_level_1_pressed() -> void:
-	SceneLoaded.load_scene("res://scenes/game_mode/arcade/level/level.tscn")
+	SceneLoader.load_scene("res://scenes/game_mode/arcade/level/level.tscn")

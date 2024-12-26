@@ -1,20 +1,18 @@
 extends Node2D
-
 @onready var pause_menu = $PauseMenu
 @onready var countdown_label = $"Background/Left panel/Time left/Countdown"
 @onready var finish_scene = $Finish
-
 var paused = false
 var time_left = 10 # 5 phút tính bằng giây
-
 func _ready():
+	
 	$ScoreTimer.start() # Bắt đầu bộ đếm thời gian
 	update_countdown_label() # Cập nhật giao diện ban đầu
 
 func _process(delta: float):
 	if Input.is_action_just_pressed("ui_pause"):
 		pauseMenu()
-
+		
 func pauseMenu():
 	if paused:
 		pause_menu.hide()
@@ -22,9 +20,8 @@ func pauseMenu():
 	else:
 		pause_menu.show()
 		Engine.time_scale = 0
-	
 	paused = !paused
- 
+	
 func _on_pause_button_pressed():
 	pauseMenu()
 

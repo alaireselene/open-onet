@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://csly72qvcmkxx"]
+[gd_scene load_steps=7 format=3 uid="uid://csly72qvcmkxx"]
 
 [ext_resource type="Texture2D" uid="uid://b6ii3elgebib0" path="res://assets/sprites/ui/UI_Frame_Yellow.png" id="1_feedr"]
+[ext_resource type="Script" path="res://scenes/setting/setting.gd" id="1_gtokb"]
 [ext_resource type="Theme" uid="uid://ckp1psjwtidnx" path="res://assets/sprites/ui/Default.tres" id="1_spimx"]
 [ext_resource type="FontFile" uid="uid://bdh12rg6fde33" path="res://assets/fonts/League Spartan.ttf" id="3_elsj1"]
 [ext_resource type="Texture2D" uid="uid://bcnbo6vq357oj" path="res://assets/sprites/ui/UI_Flat_ButtonCheck.png" id="4_o2d5i"]
@@ -18,6 +19,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_gtokb")
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(576, 324)
@@ -80,6 +82,7 @@ layout_mode = 0
 offset_left = 408.0
 offset_right = 1070.0
 offset_bottom = 42.0
+mouse_default_cursor_shape = 2
 
 [node name="BGM2" type="Control" parent="Setting Panel/Container/Âm thanh"]
 layout_mode = 2
@@ -103,6 +106,7 @@ layout_mode = 0
 offset_left = 408.0
 offset_right = 1070.0
 offset_bottom = 42.0
+mouse_default_cursor_shape = 2
 
 [node name="Đồ họa" type="Control" parent="Setting Panel/Container"]
 visible = false
@@ -145,14 +149,17 @@ theme_override_fonts/font = SubResource("FontVariation_2nrmr")
 theme_override_font_sizes/font_size = 28
 text = "Settings"
 
-[node name="Button" type="Button" parent="."]
+[node name="Back" type="Button" parent="."]
 layout_mode = 0
 offset_left = 896.0
 offset_top = 553.0
 offset_right = 1096.0
 offset_bottom = 609.0
+mouse_default_cursor_shape = 2
 theme = ExtResource("1_spimx")
 theme_override_font_sizes/font_size = 25
 text = "Quay lại"
 icon = ExtResource("4_o2d5i")
 expand_icon = true
+
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

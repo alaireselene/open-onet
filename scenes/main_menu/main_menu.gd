@@ -27,3 +27,7 @@ func _on_guide_button_pressed():
 
 func _on_arcade_pressed():
 	SceneHistory.go_to_scene("res://scenes/game_mode/arcade/arcade_mode.tscn")
+
+
+func _on_inventory_pressed() -> void:
+	SceneHistory.go_to_scene("res://scenes/inventory/inventory.tscn")

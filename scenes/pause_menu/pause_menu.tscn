@@ -81,6 +81,7 @@ offset_left = 400.0
 offset_top = 208.0
 offset_right = 568.0
 offset_bottom = 272.251
+mouse_default_cursor_shape = 2
 theme = ExtResource("1_qvadt")
 text = "TIẾP TỤC
 Continue"
@@ -94,6 +95,7 @@ offset_left = 592.0
 offset_top = 208.0
 offset_right = 752.0
 offset_bottom = 272.251
+mouse_default_cursor_shape = 2
 theme = ExtResource("1_qvadt")
 text = "CHƠI LẠI
 Restart"
@@ -107,6 +109,7 @@ offset_left = 552.0
 offset_top = 312.0
 offset_right = 600.0
 offset_bottom = 360.0
+mouse_default_cursor_shape = 2
 theme = ExtResource("1_qvadt")
 icon = SubResource("ImageTexture_sxgxe")
 alignment = 0

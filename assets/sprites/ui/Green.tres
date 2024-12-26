@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=34 format=3 uid="uid://b852relgqgucf"]
+[gd_resource type="Theme" load_steps=34 format=3 uid="uid://b7t8nvwf07i4n"]
 
 [ext_resource type="Texture2D" uid="uid://d00ws7wljnit4" path="res://assets/sprites/ui/Default_Sheet.svg" id="1"]
 [ext_resource type="FontFile" uid="uid://e37tolg3c5fc" path="res://assets/fonts/Determination Sans.otf" id="1_wlqvl"]

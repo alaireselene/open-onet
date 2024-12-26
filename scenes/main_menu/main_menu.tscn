@@ -110,6 +110,7 @@ offset_left = 7.0
 offset_top = 118.0
 offset_right = 297.0
 offset_bottom = 196.251
+mouse_default_cursor_shape = 2
 theme = ExtResource("5_rbgkh")
 theme_override_font_sizes/font_size = 22
 text = "Chế độ Thử thách"
@@ -122,6 +123,7 @@ offset_left = 306.0
 offset_top = 118.0
 offset_right = 596.0
 offset_bottom = 196.251
+mouse_default_cursor_shape = 2
 theme = ExtResource("5_rbgkh")
 theme_override_font_sizes/font_size = 22
 text = "Đối kháng Online
@@ -135,6 +137,7 @@ offset_left = 6.0
 offset_top = 10.0
 offset_right = 597.0
 offset_bottom = 104.0
+mouse_default_cursor_shape = 2
 theme = ExtResource("5_rbgkh")
 theme_override_font_sizes/font_size = 22
 text = "Chế độ giải đố"
@@ -160,6 +163,7 @@ layout_mode = 0
 offset_top = 1.0
 offset_right = 77.0
 offset_bottom = 78.0
+mouse_default_cursor_shape = 2
 theme = ExtResource("5_rbgkh")
 theme_override_fonts/font = ExtResource("2_jujfb")
 theme_override_font_sizes/font_size = 22
@@ -191,6 +195,7 @@ layout_mode = 0
 offset_top = 1.0
 offset_right = 77.0
 offset_bottom = 78.0
+mouse_default_cursor_shape = 2
 theme = ExtResource("5_rbgkh")
 theme_override_fonts/font = ExtResource("2_jujfb")
 theme_override_font_sizes/font_size = 22
@@ -218,11 +223,12 @@ offset_top = 5.0
 offset_right = 578.0
 offset_bottom = 105.0
 
-[node name="Button" type="Button" parent="Ultities Button/Inventory"]
+[node name="Inventory" type="Button" parent="Ultities Button/Inventory"]
 layout_mode = 0
 offset_top = 1.0
 offset_right = 77.0
 offset_bottom = 78.0
+mouse_default_cursor_shape = 2
 theme = ExtResource("5_rbgkh")
 theme_override_fonts/font = ExtResource("2_jujfb")
 theme_override_font_sizes/font_size = 22
@@ -271,6 +277,7 @@ offset_left = 862.0
 offset_top = 40.0
 offset_right = 927.0
 offset_bottom = 95.0
+mouse_default_cursor_shape = 2
 
 [node name="Icon" type="Sprite2D" parent="Notification"]
 position = Vector2(27, 23)
@@ -293,6 +300,7 @@ offset_left = 977.0
 offset_top = 33.0
 offset_right = 1036.0
 offset_bottom = 92.0
+mouse_default_cursor_shape = 2
 theme = ExtResource("5_rbgkh")
 icon = ExtResource("14_82x06")
 icon_alignment = 1
@@ -304,6 +312,7 @@ offset_left = 1054.0
 offset_top = 33.0
 offset_right = 1113.0
 offset_bottom = 92.0
+mouse_default_cursor_shape = 2
 theme = ExtResource("5_rbgkh")
 icon = ExtResource("15_y3iyc")
 icon_alignment = 1
@@ -312,5 +321,6 @@ expand_icon = true
 [connection signal="pressed" from="Mode Button/Arcade" to="." method="_on_arcade_pressed"]
 [connection signal="pressed" from="Ultities Button/Shop/shop" to="." method="_on_shop_pressed"]
 [connection signal="pressed" from="Ultities Button/Leatherboard/achievement" to="." method="_on_achievement_pressed"]
+[connection signal="pressed" from="Ultities Button/Inventory/Inventory" to="." method="_on_inventory_pressed"]
 [connection signal="pressed" from="Guide Button" to="." method="_on_guide_button_pressed"]
 [connection signal="pressed" from="Settings Button" to="." method="_on_settings_button_pressed"]

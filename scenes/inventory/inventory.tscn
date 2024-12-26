@@ -1,5 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://3q7ry6ohx8mr"]
+[gd_scene load_steps=14 format=3 uid="uid://3q7ry6ohx8mr"]
 
+[ext_resource type="Script" path="res://scenes/inventory/inventory.gd" id="1_8v1w5"]
 [ext_resource type="Texture2D" uid="uid://b6ii3elgebib0" path="res://assets/sprites/ui/UI_Frame_Yellow.png" id="1_c2vw5"]
 [ext_resource type="PackedScene" uid="uid://pp3j21o48u67" path="res://scenes/inventory/slot_blue.tscn" id="2_53rl3"]
 [ext_resource type="PackedScene" uid="uid://ddb4qo1khr423" path="res://scenes/inventory/slot_yellow.tscn" id="3_eur3g"]
@@ -35,6 +36,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_8v1w5")
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(576, 324)
@@ -166,6 +168,7 @@ columns = 5
 
 [node name="Button" type="Button" parent="Container/Bổ trợ/GridContainer"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 text = "      "
 
 [node name="SkillCritical" type="Sprite2D" parent="Container/Bổ trợ/GridContainer/Button"]
@@ -175,6 +178,7 @@ texture = ExtResource("10_1u5ym")
 
 [node name="Button2" type="Button" parent="Container/Bổ trợ/GridContainer"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 text = "      "
 
 [node name="SkillFreeze" type="Sprite2D" parent="Container/Bổ trợ/GridContainer/Button2"]
@@ -184,6 +188,7 @@ texture = ExtResource("11_c0wed")
 
 [node name="Button3" type="Button" parent="Container/Bổ trợ/GridContainer"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 text = "      "
 
 [node name="SkillFreeze" type="Sprite2D" parent="Container/Bổ trợ/GridContainer/Button3"]
@@ -225,13 +230,16 @@ theme_override_fonts/font = SubResource("FontVariation_2nrmr")
 theme_override_font_sizes/font_size = 28
 text = "Inventory"
 
-[node name="Button" type="Button" parent="."]
+[node name="Back" type="Button" parent="."]
 layout_mode = 0
 offset_left = 1050.0
 offset_top = 40.0
 offset_right = 1107.0
 offset_bottom = 96.0
+mouse_default_cursor_shape = 2
 theme = ExtResource("5_yp0y7")
 theme_override_font_sizes/font_size = 25
 icon = ExtResource("12_rr7tv")
 expand_icon = true
+
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

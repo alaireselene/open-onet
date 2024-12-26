@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cw1ddfh84sxg3" path="res://assets/sprites/ui/UI_Flat_Bar.png" id="5_cfqp3"]
 [ext_resource type="Texture2D" uid="uid://bdi2bnc5gcgs4" path="res://assets/sprites/icons/icon_pause.png" id="5_tj68f"]
 [ext_resource type="Texture2D" uid="uid://qtb7ikqog5s6" path="res://assets/sprites/icons/skill_freeze.png" id="6_oqxam"]
-[ext_resource type="PackedScene" uid="uid://cfhmxtjernt8l" path="res://scenes/game_mode/core/main.tscn" id="12_6wnv7"]
+[ext_resource type="PackedScene" uid="uid://cfhmxtjernt8l" path="res://scenes/game_mode/core/main/main.tscn" id="12_6wnv7"]
 [ext_resource type="PackedScene" uid="uid://c4gmrnvwadycj" path="res://scenes/pause_menu/pause_menu.tscn" id="13_c11kr"]
 [ext_resource type="PackedScene" uid="uid://bae1ww31s4hjg" path="res://scenes/finish_level/Finish.tscn" id="14_waqev"]
 
@@ -191,6 +191,7 @@ layout_mode = 0
 offset_top = 32.0
 offset_right = 168.0
 offset_bottom = 96.0
+mouse_default_cursor_shape = 2
 theme = ExtResource("2_3pr77")
 text = "TỈNH THỨC
 x2"
@@ -203,6 +204,7 @@ layout_mode = 0
 offset_top = 104.0
 offset_right = 168.0
 offset_bottom = 168.0
+mouse_default_cursor_shape = 2
 theme = ExtResource("2_3pr77")
 text = "BÙNG NỔ
 x5"
@@ -215,6 +217,7 @@ layout_mode = 0
 offset_top = 176.0
 offset_right = 168.0
 offset_bottom = 240.0
+mouse_default_cursor_shape = 2
 theme = ExtResource("2_3pr77")
 text = "ĐÔNG CỨNG
 x5"
@@ -238,6 +241,7 @@ offset_left = 1095.0
 offset_top = -4.0
 offset_right = 1164.0
 offset_bottom = 68.0
+mouse_default_cursor_shape = 2
 action_mode = 0
 icon = ExtResource("5_tj68f")
 flat = true
