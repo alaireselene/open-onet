@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqb0rg3i6k7gp"]
+
+[ext_resource type="Script" path="res://script/game2.gd" id="1_au25e"]
+[ext_resource type="Script" path="res://script/grid5.gd" id="2_w3ros"]
+
+[node name="Level 5" type="Node2D"]
+script = ExtResource("1_au25e")
+
+[node name="grid5" type="Node2D" parent="."]
+script = ExtResource("2_w3ros")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(-330, -275)
+anchor_mode = 0
+zoom = Vector2(0.8, 0.8)
