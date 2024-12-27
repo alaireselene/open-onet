@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bd2bqbpdlyhtj"]
+[gd_scene load_steps=8 format=3 uid="uid://bd2bqbpdlyhtj"]
 
 [ext_resource type="Script" path="res://scenes/game_mode/arcade/arcade_mode.gd" id="1_b0ckq"]
 [ext_resource type="Texture2D" uid="uid://dis5kkgx6usfa" path="res://assets/images/levels_bg/default.png" id="1_fhuox"]
 [ext_resource type="Theme" uid="uid://ckp1psjwtidnx" path="res://assets/sprites/ui/Default.tres" id="2_ebs42"]
 [ext_resource type="Texture2D" uid="uid://b6ii3elgebib0" path="res://assets/sprites/ui/UI_Frame_Yellow.png" id="3_1at2f"]
+[ext_resource type="Theme" uid="uid://mbsg4xqnedxi" path="res://assets/sprites/ui/Red.tres" id="5_xpms6"]
+[ext_resource type="FontFile" uid="uid://e37tolg3c5fc" path="res://assets/fonts/Determination Sans.otf" id="6_vfrye"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fd71p"]
 texture = ExtResource("3_1at2f")
@@ -31,9 +33,9 @@ color = Color(0.141176, 0.141176, 0, 0.67451)
 [node name="Title box" type="Control" parent="."]
 anchors_preset = 0
 offset_left = 376.0
-offset_top = 32.0
+offset_top = 47.0
 offset_right = 744.0
-offset_bottom = 96.0
+offset_bottom = 111.0
 
 [node name="Bounding box" type="Panel" parent="Title box"]
 layout_mode = 0
@@ -55,24 +57,26 @@ vertical_alignment = 1
 
 [node name="Level list" type="Control" parent="."]
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 113.0
+offset_top = 152.0
+offset_right = 1044.0
+offset_bottom = 563.0
 
 [node name="Back panel" type="Panel" parent="Level list"]
 layout_mode = 0
-offset_left = 114.0
-offset_top = 153.0
-offset_right = 1041.0
-offset_bottom = 561.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 928.0
+offset_bottom = 409.0
 theme = ExtResource("2_ebs42")
 theme_override_styles/panel = SubResource("StyleBoxTexture_fd71p")
 
 [node name="Level button" type="Control" parent="Level list"]
 anchors_preset = 0
-offset_left = 160.0
-offset_top = 184.0
-offset_right = 1000.0
-offset_bottom = 528.0
+offset_left = 47.0
+offset_top = 32.0
+offset_right = 887.0
+offset_bottom = 376.0
 
 [node name="Level 1" type="Button" parent="Level list/Level button"]
 layout_mode = 0
@@ -272,4 +276,16 @@ theme = ExtResource("2_ebs42")
 theme_override_font_sizes/font_size = 36
 text = "18"
 
+[node name="Exit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1067.0
+offset_top = 21.0
+offset_right = 1128.0
+offset_bottom = 87.251
+theme = ExtResource("5_xpms6")
+theme_override_fonts/font = ExtResource("6_vfrye")
+theme_override_font_sizes/font_size = 34
+text = "x"
+
 [connection signal="pressed" from="Level list/Level button/Level 1" to="." method="_on_level_1_pressed"]
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]

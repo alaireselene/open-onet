@@ -1,10 +1,8 @@
-[gd_resource type="Theme" load_steps=34 format=3 uid="uid://mbsg4xqnedxi"]
+[gd_resource type="Theme" load_steps=33 format=3 uid="uid://mbsg4xqnedxi"]
 
-[ext_resource type="Texture2D" uid="uid://d00ws7wljnit4" path="UIpack_vector.svg" id="1"]
-[ext_resource type="FontFile" uid="uid://gnbkgaf17h02" path="kenvector_future.ttf" id="2"]
+[ext_resource type="Texture2D" uid="uid://d00ws7wljnit4" path="res://assets/sprites/ui/Default_Sheet.svg" id="1"]
 
 [sub_resource type="FontFile" id="31"]
-fallbacks = Array[Font]([ExtResource("2")])
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
