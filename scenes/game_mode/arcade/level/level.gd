@@ -2,10 +2,11 @@ extends Node2D
 @onready var pause_menu = $PauseMenu
 @onready var countdown_label = $"Background/Left panel/Time left/Countdown"
 @onready var finish_scene = $Finish
+
 var paused = false
 var time_left = 10 # 5 phút tính bằng giây
 func _ready():
-	
+	print("Scene reloaded")
 	$ScoreTimer.start() # Bắt đầu bộ đếm thời gian
 	update_countdown_label() # Cập nhật giao diện ban đầu
 

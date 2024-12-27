@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b2uq44kbnfwp7"
-path="res://.godot/imported/pokemon_10.png-f9fd590d0047de5120951716d5f33a43.ctex"
+uid="uid://ckd8rsqrg0k5b"
+path="res://.godot/imported/pokemon_7.png-fe1cce41ab51274eecf0509590060bb7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprite/pokemon_10.png"
-dest_files=["res://.godot/imported/pokemon_10.png-f9fd590d0047de5120951716d5f33a43.ctex"]
+source_file="res://assets/sprites/pokemons/pokemon_7.png"
+dest_files=["res://.godot/imported/pokemon_7.png-fe1cce41ab51274eecf0509590060bb7.ctex"]
 
 [params]
 

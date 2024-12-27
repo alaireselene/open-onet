@@ -19,7 +19,7 @@ func _ready():
 func load_sprites():
 	# Tải các sprite Pokémon vào danh sách
 	for i in range(SPRITE_COUNT):
-		var texture = load("res://sprite/pokemon_%d.png" % i)
+		var texture = load("res://assets/sprites/pokemons/pokemon_%d.png" % i)
 		pokemon_sprites.append(texture)
 
 func generate_grid():
