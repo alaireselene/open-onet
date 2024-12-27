@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cm5e3b5hnqfiv"]
+
+[ext_resource type="Script" path="res://grid2.gd" id="1_lhvfk"]
+
+[node name="Level 2" type="Node2D"]
+
+[node name="grid2" type="Node2D" parent="."]
+script = ExtResource("1_lhvfk")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(-330, -275)
+anchor_mode = 0
+zoom = Vector2(0.8, 0.8)

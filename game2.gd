@@ -1,6 +1,6 @@
 extends Node
 
-var grid_size := Vector2(80*12, 80*8)
+var grid_size := Vector2(80*16, 80*16)
 var cell_size := Vector2(80, 80)
 var cell_amount := Vector2(grid_size.x/cell_size.x, grid_size.y/cell_size.y)
 

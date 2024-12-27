@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Game="*res://script/game.gd"
+Game2="*res://game2.gd"
 
 [display]
 
