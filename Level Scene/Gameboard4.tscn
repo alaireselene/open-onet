@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://xx5uqrutdump"]
+
+[ext_resource type="Script" path="res://script/game4.gd" id="1_46x1v"]
+[ext_resource type="Script" path="res://script/grid4.gd" id="2_n13yd"]
+
+[node name="Level 4" type="Node2D"]
+script = ExtResource("1_46x1v")
+
+[node name="grid4" type="Node2D" parent="."]
+script = ExtResource("2_n13yd")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, 159)
+offset = Vector2(-330, -275)
+anchor_mode = 0
+zoom = Vector2(0.7, 0.7)

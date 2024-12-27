@@ -11,7 +11,6 @@ config_version=5
 [application]
 
 config/name="Open Onet Connect"
-run/main_scene="res://script/Gameboard.tscn"
 config/features=PackedStringArray("4.3", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 <<<<<<<HEADrun/main_scene="res://Gameboard.tscn"
@@ -21,6 +20,7 @@ config/icon="res://icon.svg"
 Game="*res://script/game.gd"
 Game2="*res://script/game2.gd"
 Game3="*res://script/game3.gd"
+Game4="*res://script/game4.gd"
 
 [display]
 
