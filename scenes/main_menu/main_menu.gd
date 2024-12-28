@@ -25,6 +25,9 @@ func _on_shop_pressed():
 func _on_achievement_pressed():
 	SceneHistory.go_to_scene(_scenes["achievement"].resource_path)
 
+func _on_guide_button_pressed():
+	SceneHistory.go_to_scene("res://scenes/guide/guide.tscn")
+
 #func _on_guide_button_pressed():
 	#SceneHistory.go_to_scene(_scenes["guide"].resource_path)
 

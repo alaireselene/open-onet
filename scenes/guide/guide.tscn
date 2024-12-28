@@ -1,0 +1,86 @@
+[gd_scene load_steps=6 format=3 uid="uid://bqegrtwbhor2i"]
+
+[ext_resource type="Theme" uid="uid://ckp1psjwtidnx" path="res://assets/sprites/ui/Default.tres" id="1_b7pvx"]
+[ext_resource type="Texture2D" uid="uid://cst2j8uxi2271" path="res://assets/images/guide/match-example.png" id="2_brw18"]
+[ext_resource type="Theme" uid="uid://h1f7iqhh7ycb" path="res://assets/sprites/ui/Yellow.tres" id="3_m5wjd"]
+[ext_resource type="Texture2D" uid="uid://c2rmerountkp1" path="res://assets/sprites/icons/icon_continue.png" id="4_miggq"]
+[ext_resource type="Script" path="res://scenes/guide/guide.gd" id="5_tmyql"]
+
+[node name="Guide" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_tmyql")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 88.0
+offset_top = 40.0
+offset_right = 1072.0
+offset_bottom = 603.0
+theme = ExtResource("1_b7pvx")
+
+[node name="Example Image" type="TextureRect" parent="Panel"]
+layout_mode = 0
+offset_left = 408.0
+offset_top = 64.0
+offset_right = 952.0
+offset_bottom = 504.0
+texture = ExtResource("2_brw18")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Title" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 64.0
+offset_right = 368.0
+offset_bottom = 126.0
+theme = ExtResource("1_b7pvx")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 44
+text = "Hướng dẫn"
+vertical_alignment = 1
+
+[node name="Subtitle" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 99.0
+offset_right = 368.0
+offset_bottom = 161.0
+theme = ExtResource("1_b7pvx")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 21
+text = "Play guide"
+vertical_alignment = 1
+
+[node name="Guide text" type="RichTextLabel" parent="Panel"]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 176.0
+offset_right = 376.0
+offset_bottom = 352.0
+theme_override_colors/default_color = Color(0.0768358, 0.0768358, 0.0768358, 1)
+text = "Nhiệm vụ của bạn là tìm ra các cặp Pokemon giống nhau nhưng giữa chúng không có quá 3 đường nối.
+
+Ví dụ:
+a) Hai cặp liền kề, 1 đường nối
+b) Hai cặp 3 đường nối
+c) Hai cặp cùng cột, 3 đường nối"
+
+[node name="Back" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 456.0
+offset_right = 208.0
+offset_bottom = 504.0
+theme = ExtResource("3_m5wjd")
+text = "Tôi đã hiểu!"
+icon = ExtResource("4_miggq")
+expand_icon = true
+script = ExtResource("5_tmyql")
+
+[connection signal="pressed" from="Panel/Back" to="." method="_on_back_pressed"]
