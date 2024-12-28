@@ -255,6 +255,7 @@ offset_left = 668.0
 offset_top = 37.0
 offset_right = 880.0
 offset_bottom = 89.0
+mouse_default_cursor_shape = 2
 
 [node name="Icon" type="Sprite2D" parent="Coin"]
 position = Vector2(36, 25)

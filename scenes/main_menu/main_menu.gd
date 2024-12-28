@@ -4,7 +4,7 @@ var _scenes = {
 	"settings": preload("res://scenes/setting/setting.tscn"),
 	"shop": preload("res://scenes/shop/shop.tscn"),
 	"achievement": preload("res://scenes/achievement/achievement.tscn"),
-	#"guide": preload("res://scenes/instructions/instructions.tscn"),
+	"guide": preload("res://scenes/guide/guide.tscn"),
 	"arcade": preload("res://scenes/game_mode/arcade/arcade_mode.tscn"),
 	"inventory": preload("res://scenes/inventory/inventory.tscn")
 }
@@ -25,11 +25,11 @@ func _on_shop_pressed():
 func _on_achievement_pressed():
 	SceneHistory.go_to_scene(_scenes["achievement"].resource_path)
 
-func _on_guide_button_pressed():
-	SceneHistory.go_to_scene("res://scenes/guide/guide.tscn")
-
 #func _on_guide_button_pressed():
-	#SceneHistory.go_to_scene(_scenes["guide"].resource_path)
+	#SceneHistory.go_to_scene("res://scenes/guide/guide.tscn")
+
+func _on_guide_button_pressed():
+	SceneHistory.go_to_scene(_scenes["guide"].resource_path)
 
 func _on_arcade_pressed():
 	SceneHistory.go_to_scene(_scenes["arcade"].resource_path)
