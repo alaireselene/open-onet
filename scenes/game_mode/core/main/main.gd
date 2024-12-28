@@ -6,15 +6,27 @@ const SPRITE_COUNT = 16 # Số lượng Pokémon
 const TILE_SCENE = preload("res://scenes/game_mode/core/tile/Tile.tscn") # Đường dẫn Scene Tile
 const PLACEHOLDER_SCENE = preload("res://scenes/game_mode/core/Placeholder.tscn")
 
+
+
 var pokemon_sprites = [] # Danh sách các sprite Pokémon
 var grid_data = [] # Dữ liệu grid để sắp xếp các ô
 var selected_tiles = [] # Lưu các ô đã chọn
 var tile_size = Vector2(120, 112) # Kích thước mỗi ô dựa trên kích thước sprite
 
+
+
+signal all_matched
+signal score_updated(new_score)
+  # Thời gian từ lần match trước
+
 func _ready():
 	load_sprites()
 	generate_grid()
 	populate_grid()
+	
+#	tính điểm
+
+	
 
 func load_sprites():
 	# Tải các sprite Pokémon vào danh sách
@@ -70,23 +82,25 @@ func _on_tile_selected(tile):
 		if len(selected_tiles) == 2:
 			process_match()
 
+
+
+
+
+
 func process_match():
 	var tile1 = selected_tiles[0]
 	var tile2 = selected_tiles[1]
 
-	# Đảm bảo không chọn cùng một ô
 	if tile1 == tile2:
 		print("Không thể chọn cùng một ô!")
 		reset_selection()
 		return
 
-	# Kiểm tra ID Pokémon
 	if tile1.pokemon_id != tile2.pokemon_id:
 		print("Không giống nhau!")
 		reset_selection()
 		return
 
-	# Lấy vị trí của các tile trong lưới
 	var pos1 = get_tile_position(tile1)
 	var pos2 = get_tile_position(tile2)
 
@@ -95,13 +109,37 @@ func process_match():
 		reset_selection()
 		return
 
-	# Kiểm tra "match"
 	if can_match(pos1, pos2):
 		print("Match thành công!")
 		remove_tiles(tile1, tile2)
+		
+		
+		# Tính điểm
+		var gained_score = ScoreAlgorithms.add_score(2, TimeManager.finished_time1)  # Sử dụng time_since_last_match để tính điểm
+		emit_signal("score_updated", ScoreAlgorithms.score)
+		print("Điểm nhận được: ", gained_score)
+		
+		
+		check_all_matched()  # Kiểm tra nếu tất cả đã được match
 	else:
 		print("Không thể match!")
 	reset_selection()
+
+func check_all_matched():
+	var all_matched = true
+	for i in range(GRID_SIZE):
+		for j in range(GRID_SIZE):
+			if grid_data[i][j] != -1:
+				all_matched = false
+				break
+	if  all_matched:
+		emit_signal("all_matched")  # Phát tín hiệu nếu tất cả đã match
+
+
+
+
+
+
 
 func get_tile_position(tile):
 	var x = int(tile.position.x / tile_size.x) # Tính toán cột
