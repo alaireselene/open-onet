@@ -148,7 +148,7 @@ offset_right = 169.0
 offset_bottom = 56.0
 theme = ExtResource("1_xudx4")
 theme_override_font_sizes/font_size = 50
-text = "000000"
+text = "000088"
 horizontal_alignment = 1
 
 [node name="Label" type="Label" parent="Score"]

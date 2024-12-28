@@ -46,3 +46,8 @@ func add_score(tile_count: int, current_time: float) -> int:
 	var gained_score = calculate_score(tile_count, current_time)
 	score += gained_score
 	return gained_score
+
+func reset_score():
+	last_match_time = 0
+	score = 0
+	chain_count = 0

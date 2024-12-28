@@ -1,33 +1,38 @@
 extends Control
 
-var _setting_scene
-var _setting_instance
+var _scenes = {
+	"settings": preload("res://scenes/setting/setting.tscn"),
+	"shop": preload("res://scenes/shop/shop.tscn"),
+	"achievement": preload("res://scenes/achievement/achievement.tscn"),
+	#"guide": preload("res://scenes/instructions/instructions.tscn"),
+	"arcade": preload("res://scenes/game_mode/arcade/arcade_mode.tscn"),
+	"inventory": preload("res://scenes/inventory/inventory.tscn")
+}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	_setting_scene = load("res://scenes/setting/setting.tscn")
-	
+	AudioPlayer.play_music_main_menu()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 
 func _on_settings_button_pressed():
-	SceneHistory.go_to_scene("res://scenes/setting/setting.tscn")
+	SceneHistory.go_to_scene(_scenes["settings"].resource_path)
 	
 func _on_shop_pressed():
-	SceneHistory.go_to_scene("res://scenes/shop/shop.tscn")
+	SceneHistory.go_to_scene(_scenes["shop"].resource_path)
 
 func _on_achievement_pressed():
-	SceneHistory.go_to_scene("res://scenes/achievement/achievement.tscn")
+	SceneHistory.go_to_scene(_scenes["achievement"].resource_path)
 
 func _on_guide_button_pressed():
 	SceneHistory.go_to_scene("res://scenes/guide/guide.tscn")
 
+#func _on_guide_button_pressed():
+	#SceneHistory.go_to_scene(_scenes["guide"].resource_path)
 
 func _on_arcade_pressed():
-	SceneHistory.go_to_scene("res://scenes/game_mode/arcade/arcade_mode.tscn")
-
+	SceneHistory.go_to_scene(_scenes["arcade"].resource_path)
 
 func _on_inventory_pressed() -> void:
-	SceneHistory.go_to_scene("res://scenes/inventory/inventory.tscn")
+	SceneHistory.go_to_scene(_scenes["inventory"].resource_path)
