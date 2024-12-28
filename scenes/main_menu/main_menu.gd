@@ -22,7 +22,7 @@ func _on_achievement_pressed():
 	SceneHistory.go_to_scene("res://scenes/achievement/achievement.tscn")
 
 func _on_guide_button_pressed():
-	SceneHistory.go_to_scene("res://scenes/instructions/instructions.tscn")
+	SceneHistory.go_to_scene("res://scenes/guide/guide.tscn")
 
 
 func _on_arcade_pressed():
