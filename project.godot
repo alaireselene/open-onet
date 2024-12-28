@@ -19,6 +19,8 @@ config/icon="res://icon.svg"
 
 SceneHistory="*res://scenes/global_scenes/scene_history.gd"
 SceneLoader="*res://scenes/global_scenes/scene_loader.gd"
+TimeManager="*res://scenes/global_scenes/time_manager.gd"
+ScoreAlgorithms="*res://scenes/global_scenes/score_algorithms.gd"
 
 [dotnet]
 
