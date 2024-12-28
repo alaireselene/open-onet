@@ -5,10 +5,17 @@ extends Node2D
 @onready var finish_scene = $Finish
 @onready var score_label = $"Background/Left panel/Ultities/Score/Score number"
 
+
 signal finished_time
 
 func _ready():
 	print("Scene reloaded or entered")
+	
+#	khi chuyển scene tải lại nhạc
+	AudioPlayer.restart_music()
+	AudioPlayer.play_music_level()
+	
+	
 	TimeManager.reset_time()  # Đặt lại thời gian qua Singleton
 	TimeManager.start_timer()  # Bắt đầu đếm thời gian
 	update_countdown_label()  # Cập nhật giao diện
@@ -37,8 +44,10 @@ func pauseMenu():
 	TimeManager.toggle_pause()
 	Engine.time_scale = 0 if TimeManager.paused else 1
 	if TimeManager.paused:
+		AudioPlayer.pause_music()
 		pause_menu.show()
 	else:
+		AudioPlayer.resume_music()
 		pause_menu.hide()
 
 func _on_pause_button_pressed():
@@ -51,7 +60,7 @@ func update_countdown_label():
 
 func go_to_finish_scene():	
 	finish_scene.show()
-
+	finish_scene.set_final_score(ScoreAlgorithms.score)
 func _on_all_matched():
 	TimeManager.stop_timer()  # Dừng đếm thời gian khi hoàn thành
 	Engine.time_scale = 0
@@ -59,6 +68,7 @@ func _on_all_matched():
 
 func reset_game_state():
 	TimeManager.reset_time()
+	ScoreAlgorithms.reset_score()
 	Engine.time_scale = 1
 	TimeManager.start_timer()
 	update_countdown_label()

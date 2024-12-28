@@ -63,6 +63,7 @@ offset_left = 1060.0
 offset_top = 9.0
 offset_right = 1143.0
 offset_bottom = 92.0
+mouse_default_cursor_shape = 2
 theme = ExtResource("5_s502s")
 icon = ExtResource("6_0hpey")
 expand_icon = true

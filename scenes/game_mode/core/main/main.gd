@@ -138,9 +138,6 @@ func check_all_matched():
 
 
 
-
-
-
 func get_tile_position(tile):
 	var x = int(tile.position.x / tile_size.x) # Tính toán cột
 	var y = int(tile.position.y / tile_size.y) # Tính toán hàng

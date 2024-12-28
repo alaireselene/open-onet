@@ -1,8 +1,8 @@
 extends Node
 
 # Quản lý thời gian và trạng thái
-var total_time = 300
-var time_left = 300  # Thời gian mặc định (giây)
+var total_time = 20
+var time_left = 20  # Thời gian mặc định (giây)
 var paused = false
 var timer_active = false
 var finished_time1 = 0
