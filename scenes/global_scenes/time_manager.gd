@@ -33,19 +33,19 @@ signal time_updated(time_left: float)
 ##
 ## Sets time_left to total_time and clears pause/active states
 func reset_time() -> void:
-    time_left = total_time
-    paused = false
-    timer_active = false
-    finished_time = 0.0
-    emit_signal("time_updated", time_left)
+	time_left = total_time
+	paused = false
+	timer_active = false
+	finished_time = 0.0
+	emit_signal("time_updated", time_left)
 
 ## Starts the countdown timer
 func start_timer() -> void:
-    timer_active = true
+	timer_active = true
 
 ## Stops the countdown timer
 func stop_timer() -> void:
-    timer_active = false
+	timer_active = false
 
 ## Updates the remaining time and checks for timeout
 ##
@@ -55,26 +55,26 @@ func stop_timer() -> void:
 ## Parameters:
 ## - delta: Time elapsed since last frame in seconds
 func update_time(delta: float) -> void:
-    if timer_active and not paused and time_left > 0:
-        time_left -= delta
-        finished_time += delta
-        if time_left <= 0:
-            time_left = 0
-            timer_active = false
-            emit_signal("timeout")
-        emit_signal("time_updated", time_left)
+	if timer_active and not paused and time_left > 0:
+		time_left -= delta
+		finished_time += delta
+		if time_left <= 0:
+			time_left = 0
+			timer_active = false
+			emit_signal("timeout")
+		emit_signal("time_updated", time_left)
 
 ## Toggles the pause state
 ##
 ## Returns:
 ## - The new pause state after toggling
 func toggle_pause() -> bool:
-    paused = not paused
-    return paused
+	paused = not paused
+	return paused
 
 ## Retrieves the total time taken to complete the level
 ##
 ## Returns:
 ## - Time taken in seconds
 func get_finished_time() -> float:
-    return finished_time
+	return finished_time

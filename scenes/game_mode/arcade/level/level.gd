@@ -7,14 +7,15 @@ extends Node2D
 ##
 
 # Make UI Manager optional with a warning if it's missing
-@export var ui_manager: UIManager
+#@export var ui_manager: UIManager
 
 # Managers and Modules
 @onready var main_game = $Main
-@onready var time_manager = $TimeManager
-@onready var game_data: GameDataManager = $"/root/GameData"
+@onready var time_manager = preload("res://scenes/global_scenes/time_manager.gd").new()
+
 @onready var level_data = preload("res://scenes/game_mode/core/main/LevelData.gd").new()
-@onready var health_manager = $HealthManager
+@onready var health_manager = preload("res://scenes/game_mode/core/main/HealthManager.gd").new()
+@onready var ui_manager = preload("res://scenes/game_mode/core/main/UIManager.gd").new()
 
 # Signals
 signal finished_time
@@ -26,15 +27,15 @@ func _ready():
 	print_debug("Scene reloaded or entered")
 
 	# Verify UIManager exists
-	if not ui_manager:
-		push_warning("UIManager not found in Level scene. Attempting to find by node path...")
-		ui_manager = $UIManager
-		if not ui_manager:
-			push_error("UIManager not found. Please add UIManager node to Level scene.")
-			return
+	#if not ui_manager:
+		#push_warning("UIManager not found in Level scene. Attempting to find by node path...")
+		#ui_manager = load("res://scenes/game_mode/core/main/UIManager.gd")
+		#if not ui_manager:
+			#push_error("UIManager not found. Please add UIManager node to Level scene.")
+			#return
 
 	# Load level data
-	var current_level = game_data.current_level
+	var current_level = GameData.current_level
 	if level_data.load_level(current_level):
 		print_debug("Level loaded successfully")
 	else:
@@ -47,13 +48,13 @@ func _ready():
 	AudioPlayer.play_music_level()
 
 	# Load or initialize game state
-	if game_data.load_game() and game_data.game_data.time_left > 0:
+	if GameData.load_game() and GameData.game_data.time_left > 0:
 		print_debug("Loading saved game in progress")
-		time_manager.time_left = game_data.game_data.time_left
-		score_algorithms.score = game_data.game_data.current_score
-		score_algorithms.chain_count = game_data.game_data.chain_count
-		if main_game and game_data.game_data.grid_state:
-			main_game.grid_data = game_data.game_data.grid_state
+		time_manager.time_left = GameData.game_data.time_left
+		ScoreAlgorithms.score = GameData.game_data.current_score
+		ScoreAlgorithms.chain_count = GameData.game_data.chain_count
+		if main_game and GameData.game_data.grid_state:
+			GameData.grid_data = GameData.game_data.grid_state
 			main_game.refresh_grid()
 		time_manager.start_timer()
 	else:
@@ -62,8 +63,8 @@ func _ready():
 
 	# Update UI
 	ui_manager.update_countdown(time_manager.time_left)
-	ui_manager.update_score(score_algorithms.score)
-	ui_manager.update_health(game_data.current_health)
+	ui_manager.update_score(ScoreAlgorithms.score)
+	ui_manager.update_health(GameData.current_health)
 	
 	# Connect signals only if UIManager exists
 	if ui_manager:
@@ -86,11 +87,11 @@ func _ready():
 ## Initializes new game state
 func initialize_new_game():
 	time_manager.reset_time()
-	score_algorithms.reset_score()
-	if game_data.current_health > 0:
-		game_data.decrement_health()
+	ScoreAlgorithms.reset_score()
+	if GameData.current_health > 0:
+		GameData.decrement_health()
 		time_manager.start_timer()
-		game_data.save_game()
+		GameData.save_game()
 	else:
 		print_debug("No health remaining")
 		go_to_finish_scene()
@@ -104,7 +105,7 @@ func _process(delta: float):
 
 		# Only save during active gameplay
 		if not time_manager.paused:
-			game_data.save_game()
+			GameData.save_game()
 	
 	# Handle pause input
 	if Input.is_action_just_pressed("ui_pause"):
@@ -124,26 +125,26 @@ func toggle_pause():
 
 ## Shows finish scene with final score
 func go_to_finish_scene():	
-	ui_manager.show_finish_scene(score_algorithms.score)
+	ui_manager.show_finish_scene(ScoreAlgorithms.score)
 	Engine.time_scale = 0
 
 ## Called when all tiles are matched
 func _on_all_matched():
 	time_manager.stop_timer()
 	Engine.time_scale = 0
-	game_data.decrement_health()
-	game_data.save_game()
+	GameData.decrement_health()
+	GameData.save_game()
 	go_to_finish_scene()
 
 ## Resets game state for new game
 func reset_game_state():
 	time_manager.reset_time()
-	score_algorithms.reset_score()
+	ScoreAlgorithms.reset_score()
 	Engine.time_scale = 1
 	time_manager.start_timer()
 	ui_manager.update_countdown(time_manager.time_left)
-	ui_manager.update_health(game_data.current_health)
-	ui_manager.update_score(score_algorithms.score)
+	ui_manager.update_health(GameData.current_health)
+	ui_manager.update_score(ScoreAlgorithms.score)
 
 ## Updates score display
 func _on_score_updated(new_score: int):
@@ -183,7 +184,7 @@ func setup_level(data: Dictionary) -> void:
 	if data.has("time"):
 		time_manager.time_left = data.time
 	if data.has("target_score"):
-		score_algorithms.target_score = data.target_score
+		ScoreAlgorithms.target_score = data.target_score
 
 ## Generate grid based on loaded data
 func generate_grid(grid_data: Array) -> void:

@@ -14,26 +14,26 @@ signal pause_toggled(paused: bool)
 signal level_finished(final_score: int)
 
 func _ready() -> void:
-    pause_menu.hide()
-    finish_scene.hide()
+	pause_menu.hide()
+	finish_scene.hide()
 
 func update_countdown(time_left: float) -> void:
-    var minutes = int(time_left / 60)
-    var seconds = int(time_left) % 60
-    countdown_label.text = "%02d:%02d" % [minutes, seconds]
+	var minutes = int(time_left / 60)
+	var seconds = int(time_left) % 60
+	countdown_label.text = "%02d:%02d" % [minutes, seconds]
 
 func update_score(new_score: int) -> void:
-    score_label.text = "%06d" % new_score
+	score_label.text = "%06d" % new_score
 
 func update_health(health: int) -> void:
-    health_label.text = "x%d" % health
+	health_label.text = "x%d" % health
 
 func show_pause_menu(show: bool) -> void:
-    if show:
-        pause_menu.show()
-    else:
-        pause_menu.hide()
+	if show:
+		pause_menu.show()
+	else:
+		pause_menu.hide()
 
 func show_finish_scene(final_score: int) -> void:
-    finish_scene.show()
-    finish_scene.set_final_score(final_score)
+	finish_scene.show()
+	finish_scene.set_final_score(final_score)

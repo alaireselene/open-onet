@@ -30,8 +30,12 @@ func update_highest_score(current_score: int) -> void:
 		game_data.save_game()
 		print("New Highest Score: ", current_score)
 
+
+
 func _on_level_complete(current_score: int) -> void:
 	update_highest_score(current_score)
+
+
 
 func set_final_score(score: int) -> void:
 	score_label.text = str(score)
