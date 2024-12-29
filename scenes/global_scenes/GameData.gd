@@ -1,90 +1,148 @@
 extends Node
-## Global game data manager that handles save/load functionality and health system.
-##
-## Manages persistent game state including:
-## - Score tracking
-## - Health system with auto-revival
-## - Grid state
-## - Timer state
-## - Game progress
-##
-## This singleton is autoloaded as "GameData" and persists data to user://savegame.json.
 
-## Maximum health points player can have
-const MAX_HEALTH := 5
-## Hours required for one health point to regenerate
-const HEALTH_REVIVAL_HOURS := 24
-## File path for saving game data
-const SAVE_PATH := "user://savegame.json"
+class_name GameDataManager  # Changed from GameData to GameDataManager
 
-## Tracks highest score achieved across games
-var highest_score := 0
-## Current player health points
-var current_health := MAX_HEALTH
-## Unix timestamp of last save
-var last_saved_timestamp := 0
+# Constants
+const SAVE_FILE: String = "user://savegame.json"
+const MAX_HEALTH: int = 5
+const SECONDS_IN_DAY: int = 86400
+const POINTS_PER_COIN: int = 100
 
-## Dictionary containing all persistent game state [br]
-## Keys: [br]
-## - grid_state: Array of tile positions and types [br]
-## - current_score: Player's current score [br]
-## - time_left: Remaining level time in seconds [br]
-## - highest_score: Best score achieved [br]
-## - chain_count: Current combo chain [br]
-## - current_health: Player's health points [br]
-## - last_saved_timestamp: When game was last saved
-var game_data := {
-	"grid_state": [],
-	"current_score": 0,
-	"time_left": 0,
-	"highest_score": 0,
-	"chain_count": 0,
-	"current_health": MAX_HEALTH,
-	"last_saved_timestamp": 0
+# Game data structure with type hints
+var game_data: Dictionary = {
+    "current_level": 1,
+    "coins": 0,
+    "health": MAX_HEALTH,
+    "last_health_restore": 0,
+    "levels": {}
 }
 
-## Saves current game state to disk [br]
-## Updates all game_data fields before saving
-func save_game() -> void:
-	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
-	if file:
-		# Update all game data before saving
-		game_data = {
-			"grid_state": get_node(".").grid_data if get_node(".") else [],
-			"current_score": ScoreAlgorithms.score,
-			"time_left": TimeManager.time_left,
-			"highest_score": highest_score,
-			"chain_count": ScoreAlgorithms.chain_count,
-			"current_health": current_health,
-			"last_saved_timestamp": Time.get_unix_time_from_system()
-		}
-		file.store_string(JSON.stringify(game_data))
-		file.close()
+# Signals
+signal game_loaded(success: bool)
+signal game_saved(success: bool)
 
-## Loads game state from disk [br]
-## Returns: bool - True if load successful, false otherwise
+func _ready() -> void:
+    load_game()
+
+## Loads game data from JSON file.
+#
+# Returns:
+# - `true` if the game data was loaded successfully.
+# - `false` otherwise.
 func load_game() -> bool:
-	if FileAccess.file_exists(SAVE_PATH):
-		var file = FileAccess.open(SAVE_PATH, FileAccess.READ)
-		var json = JSON.parse_string(file.get_as_text())
-		file.close()
-		
-		if json:
-			game_data = json
-			current_health = game_data.current_health
-			check_health_revival()
-			return true
-	return false
+    if not FileAccess.file_exists(SAVE_FILE):
+        print_debug("No save file found. Initializing new game data.")
+        save_game()
+        game_loaded.emit(false)
+        return false
 
-## Checks and applies health revival based on time passed [br]
-## Health points are restored based on HEALTH_REVIVAL_HOURS [br]
-## Automatically saves game state if health is restored
-func check_health_revival() -> void:
-	var current_time := Time.get_unix_time_from_system()
-	var hours_passed :float = (current_time - game_data.last_saved_timestamp) / 3600.0
-	
-	if hours_passed >= HEALTH_REVIVAL_HOURS:
-		var revival_cycles : float = floor(hours_passed / HEALTH_REVIVAL_HOURS)
-		current_health = mini(current_health + int(revival_cycles), MAX_HEALTH)
-		game_data.current_health = current_health
-		save_game()
+    var file = FileAccess.open(SAVE_FILE, FileAccess.READ)
+    if not file:
+        push_error("Failed to open save file for reading")
+        game_loaded.emit(false)
+        return false
+
+    var json = JSON.new()
+    var parse_result = json.parse(file.get_as_text())
+    file.close()
+
+    if parse_result != OK:
+        push_error("JSON Parse Error: " + json.get_error_message() + " at line " + str(json.get_error_line()))
+        game_loaded.emit(false)
+        return false
+
+    var data = json.get_data()
+    if typeof(data) != TYPE_DICTIONARY:
+        push_error("Invalid save data format")
+        game_loaded.emit(false)
+        return false
+
+    # Ensure all required fields exist
+    var required_fields = ["current_level", "coins", "health", "last_health_restore", "levels"]
+    for field in required_fields:
+        if not data.has(field):
+            data[field] = game_data[field]
+
+    game_data = data
+    handle_health_restoration()
+    game_loaded.emit(true)
+    return true
+
+## Saves game data to JSON file.
+#
+# Returns:
+# - `true` if the game data was saved successfully.
+# - `false` otherwise.
+func save_game() -> bool:
+    var file: FileAccess = FileAccess.open(SAVE_FILE, FileAccess.WRITE)
+    if not file:
+        push_error("Failed to open " + SAVE_FILE + " for writing.")
+        game_saved.emit(false)
+        return false
+
+    var json_text: String = JSON.stringify(game_data)
+    file.store_string(json_text)
+    file.close()
+    game_saved.emit(true)
+    return true
+
+## Handles health restoration based on the last restore time.
+func handle_health_restoration() -> void:
+    var current_time: int = Time.get_unix_time_from_system()
+    var last_restore: int = game_data.get("last_health_restore", 0)
+    var time_since: int = current_time - last_restore
+    var hearts_to_restore: int = time_since / SECONDS_IN_DAY
+
+    for i in hearts_to_restore:
+        if game_data.health < MAX_HEALTH:
+            game_data.health += 1
+            game_data.last_health_restore += SECONDS_IN_DAY
+        else:
+            break
+
+    save_game()
+
+## Decrements health by one, ensuring it doesn't go below zero.
+func decrement_health() -> void:
+    if game_data.health > 0:
+        game_data.health -= 1
+        game_data.last_health_restore = Time.get_unix_time_from_system()
+        save_game()
+    else:
+        print_debug("Health is already at minimum.")
+
+## Converts points to coins based on a defined ratio.
+#
+# Parameters:
+# - `points` (int): The number of points to convert.
+func points_to_coins(points: int) -> void:
+    if points < 0:
+        push_error("Cannot convert negative points.")
+        return
+
+    var coins_to_add: int = int(points / POINTS_PER_COIN)
+    game_data.coins += coins_to_add
+    save_game()
+
+## Sets the saved state for a specific level.
+#
+# Parameters:
+# - `level_number` (int): The level number.
+# - `state` (Dictionary): The state data to save for the level.
+func set_level_state(level_number: int, state: Dictionary) -> void:
+    if level_number < 1:
+        push_error("Invalid level number: " + str(level_number))
+        return
+
+    game_data.levels[str(level_number)] = state
+    save_game()
+
+## Retrieves the saved state for a specific level.
+#
+# Parameters:
+# - `level_number` (int): The level number.
+#
+# Returns:
+# - `Dictionary` containing the level state, or an empty dictionary if not found.
+func get_level_state(level_number: int) -> Dictionary:
+    return game_data.levels.get(str(level_number), {})

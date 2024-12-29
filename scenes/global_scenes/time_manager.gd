@@ -1,76 +1,80 @@
 extends Node
-## Time manager singleton that handles game countdown and pause functionality.
+
+## TimeManager singleton that handles game countdown and pause functionality.
 ##
 ## Controls level timer, pause state, and emits timeout signal when time runs out.
-## Provides methods to start, stop, pause and update the countdown timer.
+## Provides methods to start, stop, pause, and update the countdown timer.
 ##
 ## Properties:
 ## - total_time: Base time limit for each level in seconds
 ## - time_left: Current remaining time in seconds
 ## - paused: Current pause state
-## - timer_active: Whether timer is currently running
-## - finished_time1: Time taken to complete level
+## - timer_active: Whether the timer is currently running
+## - finished_time: Time taken to complete the level
 ##
 ## Signals:
 ## - timeout: Emitted when countdown reaches zero
-
+## - time_updated: Emitted every second with the updated time_left
 
 # Timer state variables
-var total_time = 20 ## Default total time for each level in seconds
-var time_left = 20  ## Current remaining time in seconds
-var paused = false ## Current pause state
-var timer_active = false ## Whether timer is currently running
-var finished_time1 = 0 ## Time taken to complete current level
+var total_time: float = 20.0  # Default total time for each level in seconds
+var time_left: float = 20.0   # Current remaining time in seconds
+var paused: bool = false      # Current pause state
+var timer_active: bool = false  # Whether timer is currently running
+var finished_time: float = 0.0  # Time taken to complete current level
 
 ## Emitted when countdown reaches zero
 signal timeout
 
-## Resets timer to initial state [br]
+## Emitted every time the timer is updated
+signal time_updated(time_left: float)
+
+## Resets the timer to its initial state
+##
 ## Sets time_left to total_time and clears pause/active states
-func reset_time():
-	time_left = total_time
-	paused = false
-	timer_active = false
+func reset_time() -> void:
+    time_left = total_time
+    paused = false
+    timer_active = false
+    finished_time = 0.0
+    emit_signal("time_updated", time_left)
 
 ## Starts the countdown timer
-func start_timer():
-	timer_active = true
+func start_timer() -> void:
+    timer_active = true
 
 ## Stops the countdown timer
-func stop_timer():
-	timer_active = false
+func stop_timer() -> void:
+    timer_active = false
 
-## Updates remaining time and checks for timeout [br]
+## Updates the remaining time and checks for timeout
 ##
-## Decrements time_left by delta if timer is active and not paused [br]
-## Emits timeout signal when time reaches zero [br]
+## Decrements time_left by delta if timer is active and not paused
+## Emits timeout signal when time reaches zero
 ##
-## Parameters: [br]
-## - delta: Time elapsed since last frame in seconds [br]
-##
-## Returns: Current time_left value [br]
-func update_time(delta: float):
-	if timer_active and not paused and time_left > 0:
-		time_left -= delta
-		if time_left <= 0:
-			time_left = 0
-			timer_active = false
-			emit_signal("timeout")
-	return time_left
+## Parameters:
+## - delta: Time elapsed since last frame in seconds
+func update_time(delta: float) -> void:
+    if timer_active and not paused and time_left > 0:
+        time_left -= delta
+        finished_time += delta
+        if time_left <= 0:
+            time_left = 0
+            timer_active = false
+            emit_signal("timeout")
+        emit_signal("time_updated", time_left)
 
-## Calculates time taken to complete level [br]
+## Toggles the pause state
 ##
-## Parameters: [br]
-## - delta: Time elapsed since last frame in seconds [br]
-##
-## Returns: Time taken (total_time - time_left) [br]
-func finished_time(delta: float):
-	finished_time1 = total_time - update_time(delta) 
-	return finished_time1
+## Returns:
+## - The new pause state after toggling
+func toggle_pause() -> bool:
+    paused = not paused
+    return paused
 
-## Toggles pause state [br]
+## Retrieves the total time taken to complete the level
 ##
-## Returns: New pause state [br]
-func toggle_pause():
-	paused = !paused
-	return paused
+## Returns:
+## - Time taken in seconds
+func get_finished_time() -> float:
+    return finished_time
