@@ -185,4 +185,3 @@ func generate_grid(grid_data: Array) -> void:
 	if main_node:
 		main_node.grid_data = grid_data
 		main_node.refresh_grid()
-

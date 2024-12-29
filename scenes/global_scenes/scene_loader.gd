@@ -9,6 +9,18 @@ var loading = false
 var load_start_time = 0.0
 var min_loading_time = 1.0 # thời gian tối thiểu 1 giây cho loading_scene
 
+# Store temporary parameters between scenes
+var stored_params: Dictionary = {}
+
+func store_param(key: String, value: Variant) -> void:
+	stored_params[key] = value
+
+func get_param(key: String, default_value: Variant = null) -> Variant:
+	return stored_params.get(key, default_value)
+
+func clear_params() -> void:
+	stored_params.clear()
+
 func load_scene(path):
 	var current_scene = get_tree().current_scene
 

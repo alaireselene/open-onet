@@ -14,7 +14,16 @@ var game_data: Dictionary = {
     "coins": 0,
     "health": MAX_HEALTH,
     "last_health_restore": 0,
-    "levels": {}
+    "levels": {},  # Stores level-specific data
+    "highest_score": 0  # Added highest_score with a default value
+}
+
+# Level state structure
+const LEVEL_STATE_TEMPLATE: Dictionary = {
+    "grid_data": [],
+    "score": 0,
+    "time_left": 0.0,
+    "completed": false
 }
 
 # Signals
@@ -30,11 +39,21 @@ func _ready() -> void:
 # - `true` if the game data was loaded successfully.
 # - `false` otherwise.
 func load_game() -> bool:
+    # Initialize default state if no save file exists
     if not FileAccess.file_exists(SAVE_FILE):
         print_debug("No save file found. Initializing new game data.")
+        # Start with default values
+        game_data = {
+            "current_level": 1,
+            "coins": 0,
+            "health": MAX_HEALTH,
+            "last_health_restore": Time.get_unix_time_from_system(),
+            "levels": {},
+            "highest_score": 0  # Initialize highest_score
+        }
         save_game()
-        game_loaded.emit(false)
-        return false
+        game_loaded.emit(true)
+        return true
 
     var file = FileAccess.open(SAVE_FILE, FileAccess.READ)
     if not file:
@@ -42,26 +61,74 @@ func load_game() -> bool:
         game_loaded.emit(false)
         return false
 
-    var json = JSON.new()
-    var parse_result = json.parse(file.get_as_text())
+    var content = file.get_as_text()
     file.close()
+    
+    # Handle empty file
+    if content.is_empty():
+        print_debug("Save file is empty. Initializing new game data.")
+        game_data = {
+            "current_level": 1,
+            "coins": 0,
+            "health": MAX_HEALTH,
+            "last_health_restore": Time.get_unix_time_from_system(),
+            "levels": {},
+            "highest_score": 0  # Initialize highest_score
+        }
+        save_game()
+        game_loaded.emit(true)
+        return true
 
+    var json = JSON.new()
+    var parse_result = json.parse(content)
+    
     if parse_result != OK:
         push_error("JSON Parse Error: " + json.get_error_message() + " at line " + str(json.get_error_line()))
+        # If parse fails, backup the corrupted file and create new save
+        var backup_path = SAVE_FILE + ".backup"
+        var dir = DirAccess.open("user://")
+        if dir.file_exists(SAVE_FILE):
+            dir.copy(SAVE_FILE, backup_path)
+        game_data = {
+            "current_level": 1,
+            "coins": 0,
+            "health": MAX_HEALTH,
+            "last_health_restore": Time.get_unix_time_from_system(),
+            "levels": {},
+            "highest_score": 0  # Initialize highest_score
+        }
+        save_game()
         game_loaded.emit(false)
         return false
 
     var data = json.get_data()
     if typeof(data) != TYPE_DICTIONARY:
         push_error("Invalid save data format")
+        game_data = {
+            "current_level": 1,
+            "coins": 0,
+            "health": MAX_HEALTH,
+            "last_health_restore": Time.get_unix_time_from_system(),
+            "levels": {},
+            "highest_score": 0  # Initialize highest_score
+        }
+        save_game()
         game_loaded.emit(false)
         return false
 
-    # Ensure all required fields exist
-    var required_fields = ["current_level", "coins", "health", "last_health_restore", "levels"]
+    # Ensure all required fields exist with default values
+    var required_fields = {
+        "current_level": 1,
+        "coins": 0,
+        "health": MAX_HEALTH,
+        "last_health_restore": Time.get_unix_time_from_system(),
+        "levels": {},
+        "highest_score": 0  # Ensure highest_score is initialized
+    }
+    
     for field in required_fields:
         if not data.has(field):
-            data[field] = game_data[field]
+            data[field] = required_fields[field]
 
     game_data = data
     handle_health_restoration()
@@ -145,4 +212,23 @@ func set_level_state(level_number: int, state: Dictionary) -> void:
 # Returns:
 # - `Dictionary` containing the level state, or an empty dictionary if not found.
 func get_level_state(level_number: int) -> Dictionary:
-    return game_data.levels.get(str(level_number), {})
+    return game_data.levels.get(str(level_number), LEVEL_STATE_TEMPLATE.duplicate())
+
+## Saves the current state of a level
+func save_level_state(level_number: int, grid_data: Array, score: int, time_left: float, completed: bool = false) -> void:
+    var level_state = {
+        "grid_data": grid_data,
+        "score": score,
+        "time_left": time_left,
+        "completed": completed
+    }
+    
+    if not game_data.levels.has(str(level_number)):
+        game_data.levels[str(level_number)] = LEVEL_STATE_TEMPLATE.duplicate()
+    
+    game_data.levels[str(level_number)] = level_state
+    save_game()
+
+## Checks if a level has a saved state
+func has_level_state(level_number: int) -> bool:
+    return game_data.levels.has(str(level_number))

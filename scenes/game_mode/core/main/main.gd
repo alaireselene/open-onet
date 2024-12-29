@@ -2,21 +2,37 @@ extends Node2D
 
 signal score_updated(score: int)
 signal _on_all_matched
-signal tile_selected(tile: Node2D)
+signal tile_selected(tile: Button)  # Update signal type
 
 @onready var level_data = preload("res://scenes/game_mode/core/main/LevelData.gd").new()
+@onready var game_data: GameDataManager = $"/root/GameData"
 
 var grid_data: Array = []
-var selected_tile: Node2D = null
+var selected_tile: Button = null  # Update variable type
 var can_play: bool = true
+var current_score: int = 0
+var current_time_left: float = 0.0
 
 func _ready():
-	var current_level = GameData.current_level
-	if level_data.load_level(current_level):
-		initialize_grid()
-		print("Level loaded successfully")
+	var current_level = game_data.game_data.current_level
+	
+	# Check for existing saved state
+	if game_data.has_level_state(current_level):
+		var saved_state = game_data.get_level_state(current_level)
+		restore_game_state(saved_state)
 	else:
-		push_error("Failed to load level data")
+		if level_data.load_level(current_level):
+			initialize_grid()
+			current_time_left = level_data.time_limit
+		else:
+			push_error("Failed to load level data")
+
+func restore_game_state(state: Dictionary) -> void:
+	grid_data = state.grid_data
+	current_score = state.score
+	current_time_left = state.time_left
+	rebuild_grid_from_data()
+	emit_signal("score_updated", current_score)
 
 func initialize_grid():
 	grid_data.clear()
@@ -30,14 +46,15 @@ func initialize_grid():
 				row.append(tile)
 			else :
 				row.append(null)
+		grid_data.append(row)  # Append the row to grid_data to prevent out-of-bounds access
 	shuffle_grid()
 
-func create_tile(x: int, y: int) -> Node2D:
+func create_tile(x: int, y: int) -> Button:  # Change return type to Button
 	var tile_scene = preload("res://scenes/game_mode/core/tile/Tile.tscn")
-	var tile = tile_scene.instantiate()
+	var tile = tile_scene.instantiate() as Button  # Explicitly cast to Button
 	tile.position = Vector2(x * 64, y * 64)
-	tile.grid_position = Vector2(x, y)
-	tile.pressed.connect(_on_tile_pressed.bind(tile))
+	tile.grid_position = Vector2i(x, y)  # Changed to Vector2i
+	tile.tile_pressed.connect(_on_tile_pressed.bind(tile))  # Changed from pressed to tile_pressed
 	add_child(tile)
 	return tile
 
@@ -50,7 +67,7 @@ func shuffle_grid():
 		for x in range(level_data.grid_width):
 			if grid_data[y][x]:
 				tiles.append(grid_data[y][x])
-				positions.append(Vector2(x, y))
+				positions.append(Vector2i(x, y))  # Changed to Vector2i
 
 	# Shuffle tiles and reposition them
 	tiles.shuffle()
@@ -61,7 +78,7 @@ func shuffle_grid():
 		tile.position = Vector2(pos.x * 64, pos.y * 64)
 		tile.grid_position = pos
 
-func _on_tile_pressed(tile: Node2D):
+func _on_tile_pressed(tile: Button):  # Update parameter type
 	if !can_play:
 		return
 
@@ -79,7 +96,7 @@ func _on_tile_pressed(tile: Node2D):
 			selected_tile.deselect()
 			selected_tile = null
 
-func can_connect(tile1: Node2D, tile2: Node2D) -> bool:
+func can_connect(tile1: Button, tile2: Button) -> bool:  # Update parameter types
 	if tile1.type != tile2.type:
 		return false
 	
@@ -167,7 +184,7 @@ func find_two_corners_path(start: Vector2i, end: Vector2i) -> Array:
 
 	return []
 
-func handle_match(tile1: Node2D, tile2: Node2D):
+func handle_match(tile1: Button, tile2: Button):  # Update parameter types
 	# Handle tile match
 	remove_tiles(tile1, tile2)
 
@@ -186,8 +203,21 @@ func handle_match(tile1: Node2D, tile2: Node2D):
 
 	if is_grid_empty():
 		emit_signal("all_matched")
+	
+	# Save state after each match
+	save_current_state()
 
-func remove_tiles(tile1: Node2D, tile2: Node2D):
+func save_current_state() -> void:
+	var current_level = game_data.game_data.current_level
+	game_data.save_level_state(
+		current_level,
+		grid_data,
+		current_score,
+		current_time_left,
+		is_grid_empty()
+	)
+
+func remove_tiles(tile1: Button, tile2: Button):  # Update parameter types to Button
 	grid_data[tile1.grid_position.y][tile1.grid_position.x] = null
 	grid_data[tile2.grid_position.y][tile2.grid_position.x] = null
 	tile1.queue_free()
@@ -251,3 +281,19 @@ func is_grid_empty() -> bool:
 			if grid_data[y][x]:
 				return false
 	return true
+
+func rebuild_grid_from_data() -> void:
+	# Clear existing tiles
+	for y in range(grid_data.size()):
+		for x in range(grid_data[y].size()):
+			if grid_data[y][x] is Node2D:
+				grid_data[y][x].queue_free()
+	
+	# Rebuild grid from saved data
+	for y in range(grid_data.size()):
+		for x in range(grid_data[y].size()):
+			if grid_data[y][x] != null:
+				var tile_data = grid_data[y][x]
+				var tile = create_tile(x, y)
+				tile.type = tile_data.type if tile_data.has("type") else 0
+				grid_data[y][x] = tile

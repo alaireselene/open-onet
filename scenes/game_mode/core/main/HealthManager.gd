@@ -16,6 +16,7 @@ var last_played_time: float = 0.0
 
 func _ready() -> void:
     load_health_state()
+    restore_hearts()
     schedule_health_restoration()
 
 func load_health_state() -> void:
@@ -53,3 +54,30 @@ func save_health_state() -> void:
     game_data.game_data.current_health = current_health
     game_data.game_data.last_played_time = last_played_time
     game_data.save_game()
+
+## Checks if player has enough health to play
+func can_play() -> bool:
+    return current_health > 0
+
+## Called before starting a level
+func start_level() -> bool:
+    if can_play():
+        decrement_health()
+        return true
+    return false
+
+## Calculates hearts to restore based on elapsed time
+func calculate_hearts_to_restore() -> int:
+    var current_time = Time.get_unix_time_from_system()
+    var time_since_last_play = current_time - last_played_time
+    return int(time_since_last_play / RESTORE_INTERVAL)
+
+func restore_hearts() -> void:
+    var hearts_to_restore = calculate_hearts_to_restore()
+    for i in range(hearts_to_restore):
+        if current_health < MAX_HEALTH:
+            restore_health()
+            last_played_time += RESTORE_INTERVAL
+        else:
+            break
+    save_health_state()
