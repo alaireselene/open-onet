@@ -83,6 +83,7 @@ offset_left = 408.0
 offset_right = 1070.0
 offset_bottom = 42.0
 mouse_default_cursor_shape = 2
+value = 10.0
 
 [node name="BGM2" type="Control" parent="Setting Panel/Container/Âm thanh"]
 layout_mode = 2
@@ -162,4 +163,5 @@ text = "Quay lại"
 icon = ExtResource("4_o2d5i")
 expand_icon = true
 
+[connection signal="value_changed" from="Setting Panel/Container/Âm thanh/BGM/Volume Slider" to="." method="_on_volume_slider_value_changed"]
 [connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

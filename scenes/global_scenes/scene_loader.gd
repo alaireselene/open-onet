@@ -25,7 +25,7 @@ func load_scene(path):
 	scene_to_load_path = path
 	load_start_time = Time.get_ticks_msec() / 1000.0 # Ghi lại thời điểm bắt đầu bằng mili giây
 
-func _process(delta):
+func _process(_delta):
 	if not loading:
 		return
 

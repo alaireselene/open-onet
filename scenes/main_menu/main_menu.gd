@@ -13,7 +13,7 @@ var _scenes = {
 func _ready():
 	AudioPlayer.play_music_main_menu()
 
-func _process(delta):
+func _process(_delta):
 	pass
 
 func _on_settings_button_pressed():
@@ -34,5 +34,5 @@ func _on_guide_button_pressed():
 func _on_arcade_pressed():
 	SceneHistory.go_to_scene(_scenes["arcade"].resource_path)
 
-func _on_inventory_pressed() -> void:
+func _on_inventory_pressed():
 	SceneHistory.go_to_scene(_scenes["inventory"].resource_path)
