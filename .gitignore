@@ -3,3 +3,9 @@
 /android/
 .github
 addons
+.vscode
+
+# Ignore changes to theme files (use git update-index --assume-unchanged "assets/sprites/ui/*.tres")
+# assets/sprites/ui/*.tres
+
+*.tres -diff
