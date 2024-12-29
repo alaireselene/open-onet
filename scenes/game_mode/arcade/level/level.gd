@@ -6,14 +6,13 @@ extends Node2D
 ## Also manages scene transitions and health system.
 ##
 
-# Reference to UIManager
-@onready var ui_manager = $UIManager
+# Make UI Manager optional with a warning if it's missing
+@export var ui_manager: UIManager
 
 # Managers and Modules
-@onready var main_node = $Main
-@onready var time_manager = %TimeManager
-@onready var score_algorithms = %ScoreAlgorithms
-@onready var game_data = %GameData
+@onready var main_game = $Main
+@onready var time_manager = $TimeManager
+@onready var game_data: GameDataManager = $"/root/GameData"
 @onready var level_data = preload("res://scenes/game_mode/core/main/LevelData.gd").new()
 @onready var health_manager = $HealthManager
 
@@ -25,6 +24,14 @@ signal finished_time
 ## Connects necessary signals and updates UI elements
 func _ready():
 	print_debug("Scene reloaded or entered")
+
+	# Verify UIManager exists
+	if not ui_manager:
+		push_warning("UIManager not found in Level scene. Attempting to find by node path...")
+		ui_manager = $UIManager
+		if not ui_manager:
+			push_error("UIManager not found. Please add UIManager node to Level scene.")
+			return
 
 	# Load level data
 	var current_level = game_data.current_level
@@ -45,9 +52,9 @@ func _ready():
 		time_manager.time_left = game_data.game_data.time_left
 		score_algorithms.score = game_data.game_data.current_score
 		score_algorithms.chain_count = game_data.game_data.chain_count
-		if main_node and game_data.game_data.grid_state:
-			main_node.grid_data = game_data.game_data.grid_state
-			main_node.refresh_grid()
+		if main_game and game_data.game_data.grid_state:
+			main_game.grid_data = game_data.game_data.grid_state
+			main_game.refresh_grid()
 		time_manager.start_timer()
 	else:
 		print_debug("Starting new game")
@@ -58,15 +65,12 @@ func _ready():
 	ui_manager.update_score(score_algorithms.score)
 	ui_manager.update_health(game_data.current_health)
 	
-	# Connect signals
-	if not main_node.score_updated.is_connected(_on_score_updated):
-		main_node.score_updated.connect(_on_score_updated)
-
-	if not time_manager.timeout.is_connected(go_to_finish_scene):
-		time_manager.timeout.connect(go_to_finish_scene)
-
-	if not main_node.all_matched.is_connected(_on_all_matched):
-		main_node.all_matched.connect(_on_all_matched)
+	# Connect signals only if UIManager exists
+	if ui_manager:
+		main_game.score_updated.connect(ui_manager.update_score)
+		main_game._on_all_matched.connect(_on_level_complete)
+		time_manager.timeout.connect(_on_time_up)
+		time_manager.time_updated.connect(ui_manager.update_countdown)
 
 	# Connect health manager signals
 	health_manager.health_updated.connect(_on_health_updated)
@@ -143,7 +147,8 @@ func reset_game_state():
 
 ## Updates score display
 func _on_score_updated(new_score: int):
-	ui_manager.update_score(new_score)	
+	if ui_manager:
+		ui_manager.update_score(new_score)	
 
 ## Handle returning to main menu
 func _on_main_menu_returned():
@@ -182,6 +187,25 @@ func setup_level(data: Dictionary) -> void:
 
 ## Generate grid based on loaded data
 func generate_grid(grid_data: Array) -> void:
-	if main_node:
-		main_node.grid_data = grid_data
-		main_node.refresh_grid()
+	if main_game:
+		main_game.grid_data = grid_data
+		main_game.refresh_grid()
+
+## Handle time up event
+func _on_time_up() -> void:
+	main_game.can_play = false
+	if ui_manager:
+		ui_manager.show_finish_scene(main_game.current_score)
+
+## Handle level complete event
+func _on_level_complete() -> void:
+	time_manager.stop_timer()
+	main_game.can_play = false
+	if ui_manager:
+		ui_manager.show_finish_scene(main_game.current_score)
+
+## Handle pause button press
+func _on_pause_pressed() -> void:
+	if ui_manager:
+		var is_paused = time_manager.toggle_pause()
+		ui_manager.show_pause_menu(is_paused)
