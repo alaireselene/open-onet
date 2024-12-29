@@ -9,13 +9,20 @@ extends Node2D
 signal finished_time
 
 func _ready():
+	#set scale and position
+	var scale = GameSettings.get_main_scale()
+	var position = GameSettings.get_main_position()
+	$Main.position = position  # Cập nhật vị trí của main
+	$Main.scale = scale  # Cập nhật kích thước của main
+	
+	
 	print("Scene reloaded or entered")
 	
 #	khi chuyển scene tải lại nhạc
 	AudioPlayer.restart_music()
 	AudioPlayer.play_music_level()
 	
-	
+#	reset time
 	TimeManager.reset_time()  # Đặt lại thời gian qua Singleton
 	TimeManager.start_timer()  # Bắt đầu đếm thời gian
 	update_countdown_label()  # Cập nhật giao diện
@@ -31,6 +38,7 @@ func _ready():
 	if not get_node("Main").is_connected("all_matched", Callable(self, "_on_all_matched")):
 		get_node("Main").connect("all_matched", Callable(self, "_on_all_matched"))
 
+
 func _process(delta: float):
 	# Cập nhật thời gian mỗi frame
 	TimeManager.update_time(delta)
@@ -39,6 +47,7 @@ func _process(delta: float):
 	# Xử lý tạm dừng
 	if Input.is_action_just_pressed("ui_pause"):
 		pauseMenu()
+
 
 func pauseMenu():
 	TimeManager.toggle_pause()
@@ -49,6 +58,7 @@ func pauseMenu():
 	else:
 		AudioPlayer.resume_music()
 		pause_menu.hide()
+
 
 func _on_pause_button_pressed():
 	pauseMenu()

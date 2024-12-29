@@ -23,6 +23,7 @@ TimeManager="*res://scenes/global_scenes/time_manager.gd"
 AudioPlayer="*res://scenes/global_scenes/audio_player.gd"
 ScoreAlgorithms="*res://scenes/global_scenes/score_algorithms.gd"
 GameData="*res://scenes/global_scenes/GameData.gd"
+GameSettings="*res://scenes/global_scenes/GameSettings.gd"
 
 [dotnet]
 
