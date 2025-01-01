@@ -7,4 +7,3 @@ func _ready():
 
 func _on_close_pressed():
 	SceneHistory.go_back()
-

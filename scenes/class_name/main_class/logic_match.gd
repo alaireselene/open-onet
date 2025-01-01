@@ -38,6 +38,7 @@ func process_match(selected_tiles: Array):
 
 		# Tính điểm
 		var gained_score = ScoreAlgorithms.add_score(2, TimeManager.finished_time1)  # Sử dụng time_since_last_match để tính điểm
+		print(ScoreAlgorithms.score)
 		emit_signal("score_updated", ScoreAlgorithms.score)
 		print("Điểm nhận được: ", gained_score)
 

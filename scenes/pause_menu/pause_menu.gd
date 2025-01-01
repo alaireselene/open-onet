@@ -12,6 +12,6 @@ func _on_restart_pressed():
 	
 
 func _on_home_pressed():	
-	level._on_main_menu_returned()
+	GameUtils.reset_game_state()
 	SceneHistory.go_to_scene(main_menu_scene)
 	#AudioPlayer.play_music_main_menu()

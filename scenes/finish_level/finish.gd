@@ -13,7 +13,7 @@ func _ready():
 	pass
 
 func _on_home_pressed():
-	level._on_main_menu_returned()
+	GameUtils.reset_game_state()
 	SceneHistory.go_to_scene(main_menu_scene) # Replace with function body.
 
 
@@ -32,15 +32,17 @@ func _on_next_level_pressed() -> void:
 	else:
 		print("Không còn màn chơi")
 
+
 func _process(delta: float):
 	TimeManager.finished_time(delta)
 	update_countdown_label()
 
 
 func update_countdown_label():
-	var minutes = int(TimeManager.finished_time1/ 60)
-	var seconds = int(int(TimeManager.finished_time1) % 60)
-	finished_time.text = "%02d:%02d" % [minutes, seconds]
+	#var minutes = int(TimeManager.finished_time1/ 60)
+	#var seconds = int(int(TimeManager.finished_time1) % 60)
+	#finished_time.text = "%02d:%02d" % [minutes, seconds]
+	finished_time.text = GameUtils.format_time(TimeManager.finished_time1)
 # thiết kế lại	
 
 

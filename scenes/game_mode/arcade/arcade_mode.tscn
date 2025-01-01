@@ -296,4 +296,4 @@ text = "Quay lại"
 [connection signal="pressed" from="Level list/Level button/Level 1" to="." method="_on_level_1_pressed"]
 [connection signal="pressed" from="Level list/Level button/Level 2" to="." method="_on_level_2_pressed"]
 [connection signal="pressed" from="Level list/Level button/Level 3" to="." method="_on_level_3_pressed"]
-
+[connection signal="pressed" from="Close" to="." method="_on_close_pressed"]
