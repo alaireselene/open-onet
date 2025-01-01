@@ -7,6 +7,7 @@ extends Control
 
 var main_menu_scene = "res://scenes/main_menu/main_menu.tscn"
 
+
 func _ready():
 	pass
 
@@ -16,17 +17,19 @@ func _on_home_pressed():
 
 
 func _on_restart_pressed():
-	Engine.time_scale = 1
-	TimeManager.reset_time()
-	ScoreAlgorithms.reset_score()
+	GameUtils.reset_game_state()
 	get_tree().reload_current_scene()
 	
 #	hàm trên có thể tối ưu bằng cách sử dụng _reset_game_state()
 
 
 func _on_next_level_pressed() -> void:
-	pass # Replace with function body.
-
+	GameSettings.current_level += 1
+	if GameSettings.current_level <= 3:  # Chuyển sang màn tiếp theo
+		GameSettings.set_level(GameSettings.current_level)
+		SceneLoader.load_scene("res://scenes/game_mode/arcade/level/level.tscn")
+	else:
+		print("Không còn màn chơi")
 
 func _process(delta: float):
 	TimeManager.finished_time(delta)
@@ -39,16 +42,21 @@ func update_countdown_label():
 	finished_time.text = "%02d:%02d" % [minutes, seconds]
 # thiết kế lại	
 
+
 func set_final_score(score: int):
 	score_label.text = "%d" % score
 	update_highest_score(score)
+
 
 func update_highest_score(score : int):
 	# So sánh và cập nhật highest_score
 	if score > GameData.highest_score:
 		GameData.highest_score = score
+		GameData.save_data()
 		print("New highest score:", GameData.highest_score)
 	
 	# Hiển thị điểm số cao nhất
 	highest_score_label.text = "%d" % GameData.highest_score
+	
+	
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dvgkbm2bprrjq"]
+[gd_scene load_steps=17 format=3 uid="uid://dvgkbm2bprrjq"]
 
 [ext_resource type="Texture2D" uid="uid://biayybrg431d8" path="res://assets/images/levels_bg/battle-2.png" id="1_3id55"]
 [ext_resource type="Script" path="res://scenes/game_mode/arcade/level/level.gd" id="1_rlhs1"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cfhmxtjernt8l" path="res://scenes/game_mode/core/main/main.tscn" id="12_6wnv7"]
 [ext_resource type="PackedScene" uid="uid://c4gmrnvwadycj" path="res://scenes/pause_menu/pause_menu.tscn" id="13_c11kr"]
 [ext_resource type="PackedScene" uid="uid://bae1ww31s4hjg" path="res://scenes/finish_level/Finish.tscn" id="14_waqev"]
+[ext_resource type="PackedScene" uid="uid://b4tqwgyqeqivb" path="res://scenes/class_name/main_class/logic_match.tscn" id="15_pgcr7"]
 
 [sub_resource type="FontVariation" id="FontVariation_mnllv"]
 base_font = ExtResource("3_nmfup")
@@ -259,6 +260,8 @@ visible = false
 
 [node name="Finish" parent="." instance=ExtResource("14_waqev")]
 visible = false
+
+[node name="LogicMatch" parent="." instance=ExtResource("15_pgcr7")]
 
 [connection signal="pressed" from="Pause Button" to="." method="_on_pause_button_pressed"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]

@@ -293,5 +293,4 @@ theme = ExtResource("5_ev6ae")
 theme_override_font_sizes/font_size = 25
 text = "Quay lại"
 
-[connection signal="pressed" from="Level list/Level button/Level 1" to="." method="_on_level_1_pressed"]
 [connection signal="pressed" from="Close" to="." method="_on_close_pressed"]
