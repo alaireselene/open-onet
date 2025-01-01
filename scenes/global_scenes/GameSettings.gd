@@ -31,7 +31,6 @@ func set_level(level: int):
 		_:
 			print("Level không hợp lệ")
 			
-
 var screen_positions = {
 	1: Vector2(330, -12),
 	2: Vector2(270, 50),

@@ -5,6 +5,7 @@ extends Control
 @onready var score_label = $"Score/Score Number"
 @onready var highest_score_label = $"Stats/Best Score/Label" # Đường dẫn tới label highest_score
 
+
 var main_menu_scene = "res://scenes/main_menu/main_menu.tscn"
 
 

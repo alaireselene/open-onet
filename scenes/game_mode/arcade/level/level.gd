@@ -12,7 +12,6 @@ func _ready():
 	#set scale and position
 	var scale = GameSettings.get_main_scale()
 	var position = GameSettings.get_main_position()
-	
 	$Main.position = position  # Cập nhật vị trí của main
 	$Main.scale = scale  # Cập nhật kích thước của main
 	
@@ -50,6 +49,7 @@ func _ready():
 	## Kết nối tín hiệu all_matched từ LogicMatch
 	#if not get_node("Main").is_connected("all_matched", Callable(self, "_on_all_matched")):
 		#get_node("Main").connect("all_matched", Callable(self, "_on_all_matched"))
+
 
 
 

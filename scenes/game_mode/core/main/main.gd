@@ -94,7 +94,6 @@ func process_match():
 
 	var pos1 = get_tile_position(tile1)
 	var pos2 = get_tile_position(tile2)
-	
 
 	if pos1 == null or pos2 == null:
 		print("Tile không hợp lệ!")
